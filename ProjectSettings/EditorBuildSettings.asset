@@ -6,6 +6,45 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 5831a017b45ca5b45a60bfe483cad293
+  - enabled: 1
+    path: Assets/Scenes/LevelSelector.unity
+    guid: 868e26f488f6d464b8f733b8b951f874
+  - enabled: 1
+    path: Assets/Scenes/OptionsMenu.unity
+    guid: fa8e52e06e9fc2f408fb3cdc33f0cce7
+  - enabled: 1
+    path: Assets/Scenes/CreditsMenu.unity
+    guid: ee7eeb3f3498085478926a503d56f597
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: d949341ca3e147f468267af780cb8afd
+  - enabled: 1
+    path: Assets/Scenes/GameOverLevel1.unity
+    guid: cc3e1d0aff7ab13428cc50e86c818f5e
+  - enabled: 1
+    path: Assets/Scenes/CompletedLevel1.unity
+    guid: 5de20f831a8c6fd4e90049f8b40dcacc
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 8725026345a431845a4d30b9d3dcf93b
+  - enabled: 1
+    path: Assets/Scenes/GameOverLevel2.unity
+    guid: 9581f8168b1d61645972f52113d33717
+  - enabled: 1
+    path: Assets/Scenes/CompletedLevel2.unity
+    guid: 406ba0cd47b4ae945909557ec0c759e0
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 70625e45aef47b744a0676ab937a1b66
+  - enabled: 1
+    path: Assets/Scenes/GameOverLevel3.unity
+    guid: 90affabfa398bc849a009d5bf3adc4b5
+  - enabled: 1
+    path: Assets/Scenes/CompletedLevel3.unity
+    guid: f8f6bd3552238674d9cc37afea779ff1
   m_configObjects: {}
