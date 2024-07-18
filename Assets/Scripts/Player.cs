@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movePlayer = new Vector3(horizontalInput, 0, verticalInput);
+        Vector3 movePlayer = new Vector3(horizontalInput, verticalInput, 0);
 
         // Move the player by keyboard arrows
         transform.Translate(movePlayer * playerSpeed * Time.deltaTime);
