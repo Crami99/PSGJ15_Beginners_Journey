@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         transform.Translate(movePlayer * playerSpeed * Time.deltaTime);
 
         // If the player moves to the right of the screen and is inside of the Level 1 scene
-        if(transform.position.x >= 5.0f && currentScene.name == "Level1")
+        if(transform.position.x >= 6.0f && currentScene.name == "Level1")
         {
             MainMenuScript.completedLevel1 = true;
 
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         }
 
         // If the player moves to the right of the screen and is inside of the Level 2 scene
-        if (transform.position.x >= 5.0f && currentScene.name == "Level2")
+        if (transform.position.x >= 6.0f && currentScene.name == "Level2")
         {
             MainMenuScript.completedLevel2 = true;
 
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         }
 
         // If the player moves to the right of the screen and is inside of the Level 3 scene
-        if (transform.position.x >= 5.0f && currentScene.name == "Level3")
+        if (transform.position.x >= 6.0f && currentScene.name == "Level3")
         {
             SceneManager.LoadScene("CompletedLevel3");
         }
