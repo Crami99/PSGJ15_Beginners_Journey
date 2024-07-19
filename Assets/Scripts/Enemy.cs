@@ -25,15 +25,25 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
 
         // Find every single enemy line in the scene
-        enemyLine1 = GameObject.Find("EnemyLine1").GetComponent<AudioSource>();
-        enemyLine2 = GameObject.Find("EnemyLine2").GetComponent<AudioSource>();
-        enemyLine3 = GameObject.Find("EnemyLine3").GetComponent<AudioSource>();
-        enemyLine4 = GameObject.Find("EnemyLine4").GetComponent<AudioSource>();
-        enemyLine5 = GameObject.Find("EnemyLine5").GetComponent<AudioSource>();
-        enemyLine6 = GameObject.Find("EnemyLine6").GetComponent<AudioSource>();
-        enemyLine7 = GameObject.Find("EnemyLine7").GetComponent<AudioSource>();
-        enemyLine8 = GameObject.Find("EnemyLine8").GetComponent<AudioSource>();
-        enemyLine9 = GameObject.Find("EnemyLine9").GetComponent<AudioSource>();
+        enemyLine1 = GameObject.Find("EnemyLineSounds/EnemyLine1").GetComponent<AudioSource>();
+        enemyLine2 = GameObject.Find("EnemyLineSounds/EnemyLine2").GetComponent<AudioSource>();
+        enemyLine3 = GameObject.Find("EnemyLineSounds/EnemyLine3").GetComponent<AudioSource>();
+        enemyLine4 = GameObject.Find("EnemyLineSounds/EnemyLine4").GetComponent<AudioSource>();
+        enemyLine5 = GameObject.Find("EnemyLineSounds/EnemyLine5").GetComponent<AudioSource>();
+        enemyLine6 = GameObject.Find("EnemyLineSounds/EnemyLine6").GetComponent<AudioSource>();
+        enemyLine7 = GameObject.Find("EnemyLineSounds/EnemyLine7").GetComponent<AudioSource>();
+        enemyLine8 = GameObject.Find("EnemyLineSounds/EnemyLine8").GetComponent<AudioSource>();
+        enemyLine9 = GameObject.Find("EnemyLineSounds/EnemyLine9").GetComponent<AudioSource>();
+
+        enemyLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
 
         // Randomize between enemy line indexes for different dialogue each time
         enemyLineIndex = Random.Range(0, 9);
@@ -48,8 +58,14 @@ public class Enemy : MonoBehaviour
         // If the enemy sees the player, move towards the player
         if (enemySawPlayer == true)
         {
+            var towardsPlayer = player.transform.position - transform.position;
+
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
                 Time.deltaTime * 3.0f);
+
+            // Still experimenting with rotation of the enemy light
+            transform.rotation = Quaternion.RotateTowards(Quaternion.Euler(0.0f, 0.0f, transform.rotation.z),
+                Quaternion.LookRotation(towardsPlayer), Time.deltaTime * 45.0f);
         }
 
         // If the enemy and player distance is greater than or equal to 4.0, make the enemy saw player false
@@ -119,6 +135,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine1.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 1)
@@ -132,6 +150,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine2.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 2)
@@ -145,6 +165,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine3.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 3)
@@ -158,6 +180,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine4.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 4)
@@ -171,6 +195,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine5.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 5)
@@ -184,6 +210,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine6.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 6)
@@ -197,6 +225,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Play();
                 enemyLine8.Stop();
                 enemyLine9.Stop();
+
+                enemyLine7.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 7)
@@ -210,6 +240,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Play();
                 enemyLine9.Stop();
+
+                enemyLine8.transform.position = transform.position;
             }
 
             if (enemyLineIndex == 8)
@@ -223,6 +255,8 @@ public class Enemy : MonoBehaviour
                 enemyLine7.Stop();
                 enemyLine8.Stop();
                 enemyLine9.Play();
+
+                enemyLine9.transform.position = transform.position;
             }
         }
     }
