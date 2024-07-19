@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,9 +11,20 @@ public class Enemy : MonoBehaviour
 
     private int enemyLineIndex;
 
+    private GameObject player;
+
+    private bool enemySawPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
+        // Set the enemy saw player to false because the enemy shouldn't see the player as soon as the level starts
+        enemySawPlayer = false;
+
+        // Find the player game object
+        player = GameObject.Find("Player");
+
+        // Find every single enemy line in the scene
         enemyLine1 = GameObject.Find("EnemyLine1").GetComponent<AudioSource>();
         enemyLine2 = GameObject.Find("EnemyLine2").GetComponent<AudioSource>();
         enemyLine3 = GameObject.Find("EnemyLine3").GetComponent<AudioSource>();
@@ -22,27 +35,56 @@ public class Enemy : MonoBehaviour
         enemyLine8 = GameObject.Find("EnemyLine8").GetComponent<AudioSource>();
         enemyLine9 = GameObject.Find("EnemyLine9").GetComponent<AudioSource>();
 
-
-        /*if (PlayerPrefs.GetFloat("SFXSliderValue") == OptionsMenuScript.sfxVolumeSlider.value)
-        {
-            enemyLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-            enemyLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        }*/
-
+        // Randomize between enemy line indexes for different dialogue each time
         enemyLineIndex = Random.Range(0, 9);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Randomize between enemy line indexes for different dialogue each time
         enemyLineIndex = Random.Range(0, 9);
+
+        // If the enemy sees the player, move towards the player
+        if (enemySawPlayer == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+                Time.deltaTime * 3.0f);
+        }
+
+        // If the enemy and player distance is greater than or equal to 4.0, make the enemy saw player false
+        if (Vector3.Distance(transform.position, player.transform.position) >= 4.0f)
+        {
+            // Stops moving towards the player
+            enemySawPlayer = false;
+
+            transform.position = transform.position;
+        }
+
+        // If the player and enemy are way too close, load the game over scene for Level 1
+        if (Vector3.Distance(transform.position, player.transform.position) <= 0.0f &&
+            Player.currentScene.name == "Level1")
+        {
+            MainMenuScript.completedLevel1 = false;
+
+            SceneManager.LoadScene("GameOverLevel1");
+        }
+
+        // If the player and enemy are way too close, load the game over scene for Level 2
+        if (Vector3.Distance(transform.position, player.transform.position) <= 0.0f && 
+            Player.currentScene.name == "Level2")
+        {
+            MainMenuScript.completedLevel2 = false;
+
+            SceneManager.LoadScene("GameOverLevel2");
+        }
+
+        // If the player and enemy are way too close, load the game over scene for Level 3
+        if (Vector3.Distance(transform.position, player.transform.position) <= 0.0f &&
+            Player.currentScene.name == "Level3")
+        {
+            SceneManager.LoadScene("GameOverLevel3");
+        }
 
         // Basic enemy movement
         /*transform.position += new Vector3(0.5f, 0.5f, 0.0f);
@@ -63,6 +105,9 @@ public class Enemy : MonoBehaviour
         // If the enemy is being collided by the player, trigger some enemy dialogue
         if (collision.gameObject.name == "Player")
         {
+            // Set the enemy saw player to true so that the enemy will chase the player around until they're at a safe distance
+            enemySawPlayer = true;
+
             if (enemyLineIndex == 0)
             {
                 enemyLine1.Play();
@@ -179,6 +224,15 @@ public class Enemy : MonoBehaviour
                 enemyLine8.Stop();
                 enemyLine9.Play();
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            // Set the enemy saw player to true so that the enemy will chase the player around until they're at a safe distance
+            enemySawPlayer = true;
         }
     }
 }
