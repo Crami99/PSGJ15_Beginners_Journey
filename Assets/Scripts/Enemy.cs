@@ -15,14 +15,37 @@ public class Enemy : MonoBehaviour
 
     private bool enemySawPlayer;
 
+    private GameObject enemy1, enemy2, enemy3;
+
+    private Transform aiPatrolRoute1, aiPatrolRoute2, aiPatrolRoute3;
+
+    private float timeForAIToLookAround;
+
+    private bool enemylooked1, enemylooked2, enemylooked3;
+
     // Start is called before the first frame update
     void Start()
     {
         // Set the enemy saw player to false because the enemy shouldn't see the player as soon as the level starts
         enemySawPlayer = false;
 
+        timeForAIToLookAround = 0;
+
+        enemylooked1 = false;
+        enemylooked2 = false;
+        enemylooked3 = false;
+
+        aiPatrolRoute1 = GameObject.Find("Enemy1Paths/Enemy1PathA").GetComponent<Transform>();
+        aiPatrolRoute2 = GameObject.Find("Enemy1Paths/Enemy1PathB").GetComponent<Transform>();
+        aiPatrolRoute3 = GameObject.Find("Enemy1Paths/Enemy1PathC").GetComponent<Transform>();
+
         // Find the player game object
         player = GameObject.Find("Player");
+
+        // Find 3 enemies in the level
+        enemy1 = GameObject.Find("Enemy 1");
+        enemy2 = GameObject.Find("Enemy 2");
+        enemy3 = GameObject.Find("Enemy 3");
 
         // Find every single enemy line in the scene
         enemyLine1 = GameObject.Find("EnemyLineSounds/EnemyLine1").GetComponent<AudioSource>();
@@ -102,18 +125,69 @@ public class Enemy : MonoBehaviour
             SceneManager.LoadScene("GameOverLevel3");
         }
 
-        // Basic enemy movement
-        /*transform.position += new Vector3(0.5f, 0.5f, 0.0f);
-
-        if (transform.position.y >= 4.0f)
+        // Basic enemy movement for patrol route 1
+        if (enemylooked1 == false)
         {
-            transform.position = new Vector3(transform.position.x, 4.0f, transform.position.z);
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute1.position,
+                Time.deltaTime * 3.0f);
+
+            timeForAIToLookAround += Time.deltaTime;
+
+            if (timeForAIToLookAround >= 2.0f)
+            {
+                enemylooked1 = true;
+
+                timeForAIToLookAround = 0.0f;
+            }
         }
 
-        if (transform.position.x >= 5.0f)
+        LookAround();
+
+        if (enemylooked1 == true && enemylooked2 == false)
         {
-            transform.position = new Vector3(5.0f, transform.position.y, transform.position.z);
-        }*/
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute2.position,
+            Time.deltaTime * 3.0f);
+
+            timeForAIToLookAround += Time.deltaTime;
+
+            if (timeForAIToLookAround >= 2.0f)
+            {
+                enemylooked2 = true;
+
+                timeForAIToLookAround = 0.0f;
+            }
+        }
+
+        LookAround();
+
+        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == false)
+        {
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute3.position,
+            Time.deltaTime * 3.0f);
+
+            timeForAIToLookAround += Time.deltaTime;
+
+            if (timeForAIToLookAround >= 2.0f)
+            {
+                enemylooked3 = true;
+
+                timeForAIToLookAround = 0.0f;
+            }
+        }
+
+        LookAround();
+
+        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == true)
+        {
+            enemylooked1 = false;
+            enemylooked2 = false;
+            enemylooked3 = false;
+        }
+    }
+
+    IEnumerator LookAround()
+    {
+        yield return new WaitForSeconds(2);
     }
 
     private void OnTriggerEnter(Collider collision)
