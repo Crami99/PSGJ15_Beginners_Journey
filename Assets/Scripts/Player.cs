@@ -9,23 +9,27 @@ public class Player : MonoBehaviour
     private float playerSpeed;
     private Scene currentScene;
 
+    private Vector2 moveInput;
+
     // Start is called before the first frame update
     void Start()
     {
-        playerSpeed = 5.0f;
+        playerSpeed = 200.0f;
         currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
         
-        Vector3 movePlayer = new Vector3(horizontalInput, verticalInput, 0);
+        moveInput.Normalize();
+
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput.x * playerSpeed * Time.deltaTime, moveInput.y * playerSpeed * Time.deltaTime);
     
         // Move the player by keyboard arrows
-        transform.Translate(movePlayer * playerSpeed * Time.deltaTime);
+        //transform.Translate(movePlayer * playerSpeed * Time.deltaTime);
 
         /*
         // If the player moves to the right of the screen and is inside of the Level 1 scene
@@ -72,5 +76,10 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("GameOverLevel3");
         }
         */
+    }
+
+    void FixedUpdate()
+    {
+        GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput.x * playerSpeed * Time.deltaTime, moveInput.y * playerSpeed * Time.deltaTime);
     }
 }
