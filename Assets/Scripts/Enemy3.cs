@@ -1,29 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Enemy : MonoBehaviour
+public class Enemy3 : MonoBehaviour
 {
-    private AudioSource enemyLine1, enemyLine2, enemyLine3, enemyLine4, enemyLine5, 
+    private AudioSource enemyLine1, enemyLine2, enemyLine3, enemyLine4, enemyLine5,
         enemyLine6, enemyLine7, enemyLine8, enemyLine9;
 
     private int enemyLineIndex;
 
     private GameObject player;
-    private GameObject lantern1;
+    private GameObject lantern3;
 
     private float rotateSpeed = 2000.0f;
 
     private bool enemySawPlayer;
     private bool enemyIsPatrolling;
 
-    private Transform aiPatrolRoute1, aiPatrolRoute2, aiPatrolRoute3;
+    //private Transform aiPatrolRoute1, aiPatrolRoute2, aiPatrolRoute3;
 
-    private float timeForAIToLookAround;
+    //private float timeForAIToLookAround;
 
-    private bool enemylooked1, enemylooked2, enemylooked3;
+    //private bool enemylooked1, enemylooked2, enemylooked3;
 
     // Start is called before the first frame update
     void Start()
@@ -33,21 +32,21 @@ public class Enemy : MonoBehaviour
 
         enemyIsPatrolling = true;
 
-        timeForAIToLookAround = 0;
+        /*timeForAIToLookAround = 0;
 
         enemylooked1 = false;
         enemylooked2 = false;
         enemylooked3 = false;
 
-        //aiPatrolRoute1 = GameObject.Find("Enemy1Paths/Enemy1PathA").GetComponent<Transform>();
-        //aiPatrolRoute2 = GameObject.Find("Enemy1Paths/Enemy1PathB").GetComponent<Transform>();
-        //aiPatrolRoute3 = GameObject.Find("Enemy1Paths/Enemy1PathC").GetComponent<Transform>();
+        aiPatrolRoute1 = GameObject.Find("Enemy1Paths/Enemy1PathA").GetComponent<Transform>();
+        aiPatrolRoute2 = GameObject.Find("Enemy1Paths/Enemy1PathB").GetComponent<Transform>();
+        aiPatrolRoute3 = GameObject.Find("Enemy1Paths/Enemy1PathC").GetComponent<Transform>();*/
 
         // Find the player game object
         player = GameObject.Find("Player");
 
         // Find the lantern game object
-        lantern1 = GameObject.Find("Lantern 1");
+        lantern3 = GameObject.Find("Lantern 3");
 
         // Find every single enemy line in the scene
         enemyLine1 = GameObject.Find("EnemyLineSounds/EnemyLine1").GetComponent<AudioSource>();
@@ -80,18 +79,18 @@ public class Enemy : MonoBehaviour
         // Randomize between enemy line indexes for different dialogue each time
         enemyLineIndex = Random.Range(0, 9);
 
-        // If the enemy 1 sees the player, move towards the player
+        // If the enemy 3 sees the player, move towards the player
         if (Vector3.Distance(transform.position, player.transform.position) <= 2.5f)
         {
-            Enemy1CaughtPlayer();
+            Enemy3CaughtPlayer();
 
-            lantern1.transform.rotation = Quaternion.LookRotation(lantern1.transform.forward * rotateSpeed, 
+            lantern3.transform.rotation = Quaternion.LookRotation(lantern3.transform.forward * rotateSpeed,
                 player.transform.position);
 
             //transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
         }
 
-        // If the enemy and player distance is greater than or equal to 4.0, make the enemy saw player false
+        // If the enemy 3 and player distance is greater than or equal to 4.0, make the enemy saw player false
         else if (Vector3.Distance(transform.position, player.transform.position) > 2.5f)
         {
             //EnemyPatrol1();
@@ -100,7 +99,7 @@ public class Enemy : MonoBehaviour
         ShowGameOverScreen();
     }
 
-    void EnemyPatrol1()
+    /*void EnemyPatrol1()
     {
         // Stops moving towards the player
         enemySawPlayer = false;
@@ -109,7 +108,7 @@ public class Enemy : MonoBehaviour
         // Basic enemy movement for patrol route 1
         if (enemylooked1 == false && enemyIsPatrolling == true && enemySawPlayer == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, aiPatrolRoute1.position,
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute1.position,
                 Time.deltaTime * 3.0f);
 
             timeForAIToLookAround += Time.deltaTime;
@@ -122,10 +121,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (enemylooked1 == true && enemylooked2 == false && enemyIsPatrolling == true && 
+        if (enemylooked1 == true && enemylooked2 == false && enemyIsPatrolling == true &&
             enemySawPlayer == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, aiPatrolRoute2.position,
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute2.position,
             Time.deltaTime * 3.0f);
 
             timeForAIToLookAround += Time.deltaTime;
@@ -138,10 +137,10 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == false && 
+        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == false &&
             enemyIsPatrolling == true && enemySawPlayer == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, aiPatrolRoute3.position,
+            enemy1.transform.position = Vector3.MoveTowards(enemy1.transform.position, aiPatrolRoute3.position,
             Time.deltaTime * 3.0f);
 
             timeForAIToLookAround += Time.deltaTime;
@@ -154,21 +153,21 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == true && 
+        if (enemylooked1 == true && enemylooked2 == true && enemylooked3 == true &&
             enemyIsPatrolling == true && enemySawPlayer == false)
         {
             enemylooked1 = false;
             enemylooked2 = false;
             enemylooked3 = false;
         }
-    }
+    }*/
 
     void EnemyPatrol2()
     {
 
     }
 
-    void Enemy1CaughtPlayer()
+    void Enemy3CaughtPlayer()
     {
         enemyIsPatrolling = false;
         enemySawPlayer = true;
@@ -182,7 +181,7 @@ public class Enemy : MonoBehaviour
 
             // Still experimenting with rotation of the enemy light
             //transform.rotation = Quaternion.RotateTowards(Quaternion.Euler(0.0f, 0.0f, transform.rotation.z),
-                //Quaternion.LookRotation(towardsPlayer), Time.deltaTime * 45.0f);
+            //Quaternion.LookRotation(towardsPlayer), Time.deltaTime * 45.0f);
         }
     }
 

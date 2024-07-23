@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     private float playerSpeed;
-    private Scene currentScene;
+    public static Scene currentScene;
 
     // Start is called before the first frame update
     void Start()
