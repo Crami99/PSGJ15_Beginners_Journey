@@ -36,7 +36,7 @@ public class FOV : MonoBehaviour
     {
         viewRadius = 2;
         viewAngle = 360;
-        meshResolution = 10; //number of raycasts per degree (mayor performance control)
+        meshResolution = 2; //number of raycasts per degree (mayor performance control)
 
         obstacleMask = LayerMask.GetMask("Obstacles");
 
