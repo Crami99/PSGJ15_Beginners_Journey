@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class Enemy : MonoBehaviour
 
     private AudioSource enemyLostPlayerLine1, enemyLostPlayerLine2, enemyLostPlayerLine3, enemyLostPlayerLine4,
         enemyLostPlayerLine5, enemyLostPlayerLine6, enemyLostPlayerLine7, enemyLostPlayerLine8, enemyLostPlayerLine9;
+
+    public Transform[] patrolPoints;
+    private int patrolPointIndex;
+
+    private float timeToLookAround;
+
+    private GameObject player;
+
+    public static bool isEnemyPatrolling;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +65,12 @@ public class Enemy : MonoBehaviour
         enemyLostPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;*/
+
+        patrolPointIndex = 0;
+
+        player = GameObject.Find("Player");
+
+        isEnemyPatrolling = true;
     }
 
     // Update is called once per frame
@@ -62,6 +78,87 @@ public class Enemy : MonoBehaviour
     {
         enemyLineIndex = Random.Range(0, 9);
         enemyLostSightOfPlayerLineIndex = Random.Range(0, 9);
+
+        EnemyPatrolling();
+    }
+
+    private void EnemyPatrolling()
+    {
+        if (isEnemyPatrolling == true)
+        {
+            switch (patrolPointIndex)
+            {
+                case 0:
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+
+                    timeToLookAround += Time.deltaTime;
+
+                    transform.position = transform.position;
+
+
+                    if (timeToLookAround >= 2.0f)
+                    {
+                        timeToLookAround = 0.0f;
+
+                        patrolPointIndex = 1;
+                    }
+
+                    break;
+
+                case 1:
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+
+                    timeToLookAround += Time.deltaTime;
+
+                    transform.position = transform.position;
+
+                    if (timeToLookAround >= 2.0f)
+                    {
+                        timeToLookAround = 0.0f;
+
+                        patrolPointIndex = 2;
+                    }
+
+                    break;
+
+                case 2:
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+
+                    timeToLookAround += Time.deltaTime;
+
+                    transform.position = transform.position;
+
+                    if (timeToLookAround >= 2.0f)
+                    {
+                        timeToLookAround = 0.0f;
+
+                        patrolPointIndex = 3;
+                    }
+
+                    break;
+
+                case 3:
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+
+                    timeToLookAround += Time.deltaTime;
+
+                    transform.position = transform.position;
+
+
+                    if (timeToLookAround >= 2.0f)
+                    {
+                        timeToLookAround = 0.0f;
+
+                        patrolPointIndex = 0;
+                    }
+
+                    break;
+            }
+        }
     }
 
     private void PlayEnemyCaughtPlayerLines()
@@ -297,227 +394,317 @@ public class Enemy : MonoBehaviour
     {
         if (enemyLostSightOfPlayerLineIndex == 0)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Play();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Play();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine1.transform.position = transform.position;
+                enemyLostPlayerLine1.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 1)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Play();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Play();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine2.transform.position = transform.position;
+                enemyLostPlayerLine2.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 2)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Play();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Play();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine3.transform.position = transform.position;
+                enemyLostPlayerLine3.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 3)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Play();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Play();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine4.transform.position = transform.position;
+                enemyLostPlayerLine4.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 4)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Play();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Play();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine5.transform.position = transform.position;
+                enemyLostPlayerLine5.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 5)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Play();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Play();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine6.transform.position = transform.position;
+                enemyLostPlayerLine6.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 6)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Play();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Play();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine7.transform.position = transform.position;
+                enemyLostPlayerLine7.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 7)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Play();
-            enemyLostPlayerLine9.Stop();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Play();
+                enemyLostPlayerLine9.Stop();
 
-            enemyLostPlayerLine8.transform.position = transform.position;
+                enemyLostPlayerLine8.transform.position = transform.position;
+            }
         }
 
         if (enemyLostSightOfPlayerLineIndex == 8)
         {
-            enemySawPlayerLine1.Stop();
-            enemySawPlayerLine2.Stop();
-            enemySawPlayerLine3.Stop();
-            enemySawPlayerLine4.Stop();
-            enemySawPlayerLine5.Stop();
-            enemySawPlayerLine6.Stop();
-            enemySawPlayerLine7.Stop();
-            enemySawPlayerLine8.Stop();
-            enemySawPlayerLine9.Stop();
+            if (enemySawPlayerLine1 != null && enemySawPlayerLine2 != null && enemySawPlayerLine3 != null &&
+                enemySawPlayerLine4 != null && enemySawPlayerLine5 != null && enemySawPlayerLine6 != null &&
+                enemySawPlayerLine7 != null && enemySawPlayerLine8 != null && enemySawPlayerLine9 != null)
+            {
+                enemySawPlayerLine1.Stop();
+                enemySawPlayerLine2.Stop();
+                enemySawPlayerLine3.Stop();
+                enemySawPlayerLine4.Stop();
+                enemySawPlayerLine5.Stop();
+                enemySawPlayerLine6.Stop();
+                enemySawPlayerLine7.Stop();
+                enemySawPlayerLine8.Stop();
+                enemySawPlayerLine9.Stop();
+            }
 
-            enemyLostPlayerLine1.Stop();
-            enemyLostPlayerLine2.Stop();
-            enemyLostPlayerLine3.Stop();
-            enemyLostPlayerLine4.Stop();
-            enemyLostPlayerLine5.Stop();
-            enemyLostPlayerLine6.Stop();
-            enemyLostPlayerLine7.Stop();
-            enemyLostPlayerLine8.Stop();
-            enemyLostPlayerLine9.Play();
+            if (enemyLostPlayerLine1 != null && enemyLostPlayerLine2 != null && enemyLostPlayerLine3 != null &&
+                enemyLostPlayerLine4 != null && enemyLostPlayerLine5 != null && enemyLostPlayerLine6 != null &&
+                enemyLostPlayerLine7 != null && enemyLostPlayerLine8 != null && enemyLostPlayerLine9 != null)
+            {
+                enemyLostPlayerLine1.Stop();
+                enemyLostPlayerLine2.Stop();
+                enemyLostPlayerLine3.Stop();
+                enemyLostPlayerLine4.Stop();
+                enemyLostPlayerLine5.Stop();
+                enemyLostPlayerLine6.Stop();
+                enemyLostPlayerLine7.Stop();
+                enemyLostPlayerLine8.Stop();
+                enemyLostPlayerLine9.Play();
 
-            enemyLostPlayerLine9.transform.position = transform.position;
+                enemyLostPlayerLine9.transform.position = transform.position;
+            }
         }
     }
 
@@ -526,6 +713,17 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PlayEnemyCaughtPlayerLines();
+
+            isEnemyPatrolling = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+                Time.deltaTime * 10.0f);
         }
     }
 
@@ -534,6 +732,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PlayEnemyLostPlayerLines();
+
+            isEnemyPatrolling = true;
         }
     }
 }

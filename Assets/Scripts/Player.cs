@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     private float lightDamage;
 
-    private Scene currentScene;
+    public static Scene currentScene;
     private Vector2 moveInput;
 
     private Slider healthBar;
