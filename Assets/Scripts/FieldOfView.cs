@@ -34,9 +34,9 @@ public class FOV : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        viewRadius = 2;
+        viewRadius = 10;
         viewAngle = 360;
-        meshResolution = 2; //number of raycasts per degree (mayor performance control)
+        meshResolution = 4; //number of raycasts per degree (mayor performance control)
 
         obstacleMask = LayerMask.GetMask("Obstacles");
 
@@ -104,7 +104,7 @@ public class FOV : MonoBehaviour
         for (int i = 0; i < vertexCount - 1; i++){
 
             //player coordinates
-            vertices[i+1] = (transform.InverseTransformPoint(viewPoints[i]) + new Vector3(viewRadius, viewRadius)) * 99;//Shift and scale to Rect coordinates
+            vertices[i+1] = (transform.InverseTransformPoint(viewPoints[i]) + new Vector3(viewRadius, viewRadius)) * 100;//Shift and scale to Rect coordinates
 
             //clamp values to prevent floating point errrors
             vertices[i+1][0] = Mathf.Clamp(vertices[i+1][0], 0, viewRadius * 200);
