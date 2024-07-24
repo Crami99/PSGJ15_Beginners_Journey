@@ -1,6 +1,6 @@
 //
     Fuctionality of the items
-    Grid Possition {X, Y}
+    Grid Possition {X, -Y}
     The grid is 32x32
 
     Passive items: 
