@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -16,6 +17,9 @@ public class Player : MonoBehaviour
     private Scene currentScene;
     private Vector2 moveInput;
 
+    private Slider healthBar;
+    private Slider shieldBar;
+
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
     // Start is called before the first frame update
@@ -29,7 +33,8 @@ public class Player : MonoBehaviour
 
         lightDamage = 1;
 
-        
+        healthBar = GameObject.Find("Health Bar Slider").GetComponent<Slider>();
+        shieldBar = GameObject.Find("Shield Bar Slider").GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -39,6 +44,9 @@ public class Player : MonoBehaviour
         moveInput.y = Input.GetAxis("Vertical");
         
         moveInput.Normalize();
+
+        healthBar.value = playerHealth;
+        shieldBar.value = playerShield;
 
         // Show the game over screen when the player's health is at 0
         ShowGameOverScreen();
