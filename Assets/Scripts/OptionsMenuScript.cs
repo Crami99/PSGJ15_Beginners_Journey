@@ -12,7 +12,7 @@ public class OptionsMenuScript : MonoBehaviour
     private Text sfxVolumeText;
 
     private Slider musicVolumeSlider;
-    private Slider sfxVolumeSlider;
+    public static Slider sfxVolumeSlider;
 
     private Text musicVolumeSliderText;
     private Text sfxVolumeSliderText;
