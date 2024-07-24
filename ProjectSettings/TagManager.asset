@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Lightsource
+  - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -12,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Masked
   - 
   - 
+  - Obstacles
   - 
   - 
   - 
