@@ -49,6 +49,11 @@ public class Enemy : MonoBehaviour
             noCombatMusic.volume = 100f;
         }
 
+        combatMusic.loop = true;
+        noCombatMusic.loop = true;
+
+        noCombatMusic.Play();
+
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
         lostClips = new List<string> {"Come", "ComeBack", "ComeOut", "DamnIt", "LostHim", "TimeToLook", "Where", "WillFind", "YouThink"};
