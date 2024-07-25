@@ -51,25 +51,25 @@ public class Enemy : MonoBehaviour
         enemyLostPlayerLine8 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine8").GetComponent<AudioSource>();
         enemyLostPlayerLine9 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine9").GetComponent<AudioSource>();
 
-        enemySawPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine1.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine2.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine3.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine4.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine5.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine6.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine7.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine8.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemySawPlayerLine9.volume = PlayerPrefs.GetFloat("SFXSliderValue");
 
-        enemyLostPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemyLostPlayerLine1.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine2.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine3.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine4.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine5.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine6.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine7.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine8.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        enemyLostPlayerLine9.volume = PlayerPrefs.GetFloat("SFXSliderValue");
     }
 
     // Update is called once per frame

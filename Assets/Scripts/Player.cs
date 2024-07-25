@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private Slider healthBar;
     private Slider shieldBar;
 
+    public static GameObject inventoryHUD;
+
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
     // Start is called before the first frame update
@@ -35,6 +37,10 @@ public class Player : MonoBehaviour
 
         healthBar = GameObject.Find("Health Bar Slider").GetComponent<Slider>();
         shieldBar = GameObject.Find("Shield Bar Slider").GetComponent<Slider>();
+
+        inventoryHUD = GameObject.Find("Inventory UI");
+        inventoryHUD.SetActive(false);
+
     }
 
     // Update is called once per frame

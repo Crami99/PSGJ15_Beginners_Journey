@@ -54,15 +54,15 @@ public class LevelSelectorScript : MonoBehaviour
         levelSelectorButtonLockedLine8 = GameObject.Find("ButtonLockedSounds/ButtonLockedLine8").GetComponent<AudioSource>();
         levelSelectorButtonLockedLine9 = GameObject.Find("ButtonLockedSounds/ButtonLockedLine9").GetComponent<AudioSource>();
 
-        levelSelectorButtonLockedLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        levelSelectorButtonLockedLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        levelSelectorButtonLockedLine1.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine2.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine3.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine4.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine5.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine6.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine7.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine8.volume = PlayerPrefs.GetFloat("SFXSliderValue");
+        levelSelectorButtonLockedLine9.volume = PlayerPrefs.GetFloat("SFXSliderValue");
     }
 
     // Update is called once per frame
