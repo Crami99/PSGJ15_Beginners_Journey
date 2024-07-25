@@ -13,7 +13,7 @@ public class PlayerHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Pauses the game
+        // Resumes the game
         Time.timeScale = 1.0f;
     }
 
@@ -21,5 +21,11 @@ public class PlayerHUD : MonoBehaviour
     {
         // Open up the inventory HUD for the player
         Player.inventoryHUD.SetActive(true);
+    }
+
+    public void PressPauseButton()
+    {
+        // Open the pause menu for the player
+        Player.pauseMenu.SetActive(true);
     }
 }

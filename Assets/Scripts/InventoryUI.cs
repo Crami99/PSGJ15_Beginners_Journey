@@ -13,7 +13,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Resumes the game
+        // Pauses the game
         Time.timeScale = 0.0f;
     }
 

@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private Slider shieldBar;
 
     public static GameObject inventoryHUD;
+    public static GameObject pauseMenu;
 
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
@@ -40,6 +41,9 @@ public class Player : MonoBehaviour
 
         inventoryHUD = GameObject.Find("Inventory UI");
         inventoryHUD.SetActive(false);
+
+        pauseMenu = GameObject.Find("Pause Menu UI");
+        pauseMenu.SetActive(false);
 
     }
 
