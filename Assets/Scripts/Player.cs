@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
 
         pauseMenu = GameObject.Find("Pause Menu UI");
         pauseMenu.SetActive(false);
-
     }
 
     // Update is called once per frame

@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     List<string> spottedClips;
     List<string> lostClips;
 
+    public AudioSource combatMusic;
+    public AudioSource noCombatMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +37,21 @@ public class Enemy : MonoBehaviour
             audioSrc.volume = 100f;
         }
 
+        if (PlayerPrefs.GetFloat("MusicSliderValue") != null)
+        {
+            combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue");
+            noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue");
+        }
+
+        else
+        {
+            combatMusic.volume = 100f;
+            noCombatMusic.volume = 100f;
+        }
+
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
         lostClips = new List<string> {"Come", "ComeBack", "ComeOut", "DamnIt", "LostHim", "TimeToLook", "Where", "WillFind", "YouThink"};
-
     }
 
     // Update is called once per frame
@@ -128,13 +142,17 @@ public class Enemy : MonoBehaviour
     private void PlayEnemyCaughtPlayerLines()
     {
         //if the enemy is not currently playing a sound, play a sound
-        if(!audioSrc.isPlaying){
+        if(!audioSrc.isPlaying)
+        {
             string path = "SoundEffects/Enemy/Spotted/";
 
             int soundIndex = Random.Range(0, spottedClips.Count);
 
             audioSrc.clip = Resources.Load<AudioClip>(path + spottedClips[soundIndex]);
             audioSrc.Play();
+
+            noCombatMusic.Stop();
+            combatMusic.Play();
         }
     }
         
@@ -142,13 +160,17 @@ public class Enemy : MonoBehaviour
     private void PlayEnemyLostPlayerLines()
     {
         //if the enemy is not currently playing a sound, play a sound
-        if(!audioSrc.isPlaying){
+        if(!audioSrc.isPlaying || audioSrc.isPlaying)
+        {
             string path = "SoundEffects/Enemy/Lost/";
 
             int soundIndex = Random.Range(0, lostClips.Count);
 
             audioSrc.clip = Resources.Load<AudioClip>(path + lostClips[soundIndex]);
             audioSrc.Play();
+
+            combatMusic.Stop();
+            noCombatMusic.Play();
         }
     }
 
