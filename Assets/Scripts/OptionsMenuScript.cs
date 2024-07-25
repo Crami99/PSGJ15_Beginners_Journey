@@ -86,6 +86,7 @@ public class OptionsMenuScript : MonoBehaviour
     {
         // If the player presses the back button, take them back to the main menu
         Destroy(GameObject.Find("MainMenuScript"));
+        Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
     }
 }

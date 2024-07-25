@@ -39,22 +39,27 @@ public class GameWon : MonoBehaviour
 
     public void PressRestartButton()
     {
+        GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>().ResetStats();
         GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().createRoomList();
 
         List<string> roomList = GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().roomList;
 
         if(roomList.Count > 0){
-            string nextRoom = roomList[0];
-            roomList.RemoveAt(0);
+            int roomIndex = Random.Range(0, roomList.Count);
+            string nextRoom = roomList[roomIndex];
+            roomList.RemoveAt(roomIndex);
             SceneManager.LoadScene(nextRoom);
         }else{
+            Debug.Log("Error: no Rooms in List");
             Destroy(GameObject.Find("MainMenuScript"));
+            Destroy(GameObject.Find("PlayerStatusScript"));
             SceneManager.LoadScene("MainMenu");
         }
     }
 
     public void PressQuitButton()
     {
+        GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>().ResetStats();
         Destroy(GameObject.Find("MainMenuScript"));
         SceneManager.LoadScene("MainMenu");
     }

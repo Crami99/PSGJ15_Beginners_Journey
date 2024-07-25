@@ -100,6 +100,8 @@ public class CreditsMenuScript : MonoBehaviour
 
     public void PressBackButton()
     {
+        Destroy(GameObject.Find("MainMenuScript"));
+        Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
     }
 }

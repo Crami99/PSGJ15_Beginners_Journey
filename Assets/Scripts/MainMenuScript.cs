@@ -71,16 +71,18 @@ public class MainMenuScript : MonoBehaviour
         roomList.Add("Room 1");
         roomList.Add("Room 1");
         roomList.Add("Room 2");
-
-        //shuffle list to randomize levels
     }
 
     public void PressPlayButton()
     {
         if(roomList.Count > 0){
-            string nextRoom = roomList[0];
-            roomList.RemoveAt(0);
+            //if there are rooms, go to rendom romm
+            int roomIndex = Random.Range(0, roomList.Count);
+            string nextRoom = roomList[roomIndex];
+            roomList.RemoveAt(roomIndex);
             SceneManager.LoadScene(nextRoom);
+        }else{
+            Debug.Log("Error: no Rooms in List");
         }
     }
 
