@@ -18,6 +18,7 @@
         leather strip {1,10} == Regen increase
 
     Materials:
+        //they have no stats attributes rn
         Mushroom {1,2}
         Slime Condensate {2,1} {3,2}
         Moss {3,2}
@@ -34,5 +35,9 @@
         Bug {2,8}
         Bread {4,9}
         Crackers {6,9}
+        Maggot {7,6}
+        ??? Hide {7,8}
+        Gloom bloom {9,8}
+        Lead Bars {11,5}
 
 //
