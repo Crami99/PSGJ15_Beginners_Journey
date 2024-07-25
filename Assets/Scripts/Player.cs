@@ -23,6 +23,18 @@ public class Player : MonoBehaviour
     public static GameObject inventoryHUD;
     public static GameObject pauseMenu;
 
+    // This will be for the sword
+    public static GameObject swordItem;
+
+    // This will be for the serf
+    public static GameObject serfItem;
+
+    public static bool sword1PickedUp;
+    public static bool sword2PickedUp;
+
+    public static bool serf1PickedUp;
+    public static bool serf2PickedUp;
+
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
     // Start is called before the first frame update
@@ -41,11 +53,21 @@ public class Player : MonoBehaviour
         healthBar = GameObject.Find("Health Bar Slider").GetComponent<Slider>();
         shieldBar = GameObject.Find("Shield Bar Slider").GetComponent<Slider>();
 
+        swordItem = GameObject.Find("Sword item");
+
+        serfItem = GameObject.Find("Serf item");
+
         inventoryHUD = GameObject.Find("Inventory UI");
         inventoryHUD.SetActive(false);
 
         pauseMenu = GameObject.Find("Pause Menu UI");
         pauseMenu.SetActive(false);
+
+        sword1PickedUp = false;
+        sword2PickedUp = false;
+
+        serf1PickedUp = false;
+        serf2PickedUp = false;
     }
 
     // Update is called once per frame
@@ -62,6 +84,20 @@ public class Player : MonoBehaviour
         // Show the game over screen when the player's health is at 0
         if(playerHealth <= 0.0f){
             SceneManager.LoadScene("GameOver");
+        }
+
+        // If the player presses the O key and is holding a sword but not a serf
+        if (Input.GetKeyDown(KeyCode.O) && !serfItem.activeInHierarchy && swordItem.activeInHierarchy)
+        {
+            serfItem.SetActive(true); // Show the serf
+            swordItem.SetActive(false); // Hide the sword
+        }
+
+        // Else if the player presses the O key and is holding a serf but not a sword
+        else if (Input.GetKeyDown(KeyCode.O) && serfItem.activeInHierarchy && !swordItem.activeInHierarchy)
+        {
+            serfItem.SetActive(false); // Hide the serf
+            swordItem.SetActive(true); // Show the sword
         }
     }
     void FixedUpdate()
@@ -90,6 +126,40 @@ public class Player : MonoBehaviour
             }else{
                 SceneManager.LoadScene("GameWon");
             }
+        }
+
+        if (other.gameObject.tag == "Sword" && !sword1PickedUp ||
+            other.gameObject.tag == "Sword" && !serf1PickedUp)
+        {
+            sword1PickedUp = true;
+
+            swordItem.transform.SetParent(transform);
+        }
+
+        if (other.gameObject.tag == "Sword" && serf1PickedUp && !sword2PickedUp)
+        {
+            sword1PickedUp = false;
+            sword2PickedUp = true;
+
+            serfItem.SetActive(false);
+            swordItem.transform.SetParent(transform);
+        }
+
+        if (other.gameObject.tag == "Serf" && !serf1PickedUp ||
+            other.gameObject.tag == "Serf" && !sword1PickedUp)
+        {
+            serf1PickedUp = true;
+
+            serfItem.transform.SetParent(transform);
+        }
+
+        if (other.gameObject.tag == "Serf" && sword1PickedUp && !serf2PickedUp)
+        {
+            serf1PickedUp = false;
+            serf2PickedUp = true;
+
+            swordItem.SetActive(false);
+            serfItem.transform.SetParent(transform);
         }
     }
 

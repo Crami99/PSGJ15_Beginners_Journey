@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Obstacle
   - MainMenu
+  - Sword
+  - Serf
   layers:
   - Default
   - TransparentFX
