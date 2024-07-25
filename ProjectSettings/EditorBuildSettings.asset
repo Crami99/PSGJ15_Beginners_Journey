@@ -12,39 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenes/HowToPlay.unity
     guid: 5831a017b45ca5b45a60bfe483cad293
   - enabled: 1
-    path: Assets/Scenes/LevelSelector.unity
-    guid: 868e26f488f6d464b8f733b8b951f874
-  - enabled: 1
     path: Assets/Scenes/OptionsMenu.unity
     guid: fa8e52e06e9fc2f408fb3cdc33f0cce7
   - enabled: 1
     path: Assets/Scenes/CreditsMenu.unity
     guid: ee7eeb3f3498085478926a503d56f597
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: d949341ca3e147f468267af780cb8afd
+    path: Assets/Scenes/Room 1.unity
+    guid: cc41c3ac816d66e47a719ac224994e12
   - enabled: 1
-    path: Assets/Scenes/GameOverLevel1.unity
-    guid: cc3e1d0aff7ab13428cc50e86c818f5e
+    path: Assets/Scenes/Room 2.unity
+    guid: c8e1d0710d319f94ba3a645f0c653634
   - enabled: 1
-    path: Assets/Scenes/CompletedLevel1.unity
-    guid: 5de20f831a8c6fd4e90049f8b40dcacc
+    path: Assets/Scenes/GameWon.unity
+    guid: bcddb23aac6f86f4b866566706312cf9
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: 8725026345a431845a4d30b9d3dcf93b
-  - enabled: 1
-    path: Assets/Scenes/GameOverLevel2.unity
-    guid: 9581f8168b1d61645972f52113d33717
-  - enabled: 1
-    path: Assets/Scenes/CompletedLevel2.unity
-    guid: 406ba0cd47b4ae945909557ec0c759e0
-  - enabled: 1
-    path: Assets/Scenes/Level3.unity
-    guid: 70625e45aef47b744a0676ab937a1b66
-  - enabled: 1
-    path: Assets/Scenes/GameOverLevel3.unity
-    guid: 90affabfa398bc849a009d5bf3adc4b5
-  - enabled: 1
-    path: Assets/Scenes/CompletedLevel3.unity
-    guid: f8f6bd3552238674d9cc37afea779ff1
+    path: Assets/Scenes/GameOver.unity
+    guid: 52c96280b2bdb4c4da09140d322ff62b
   m_configObjects: {}

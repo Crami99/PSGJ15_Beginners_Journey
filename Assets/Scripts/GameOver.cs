@@ -4,18 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOverLevel2 : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-    private Text gameOverLevel2Text;
-    private Text levelSelectorText;
+    private Text gameOverText;
     private Text restartText;
     private Text quitText;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameOverLevel2Text = GameObject.Find("GameOverLevel2Text").GetComponent<Text>();
-        levelSelectorText = GameObject.Find("LevelSelectorText").GetComponent<Text>();
+        gameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
         restartText = GameObject.Find("RestartText").GetComponent<Text>();
         quitText = GameObject.Find("QuitText").GetComponent<Text>();
     }
@@ -23,15 +21,10 @@ public class GameOverLevel2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameOverLevel2Text.text = "Level 2 failed!";
-        gameOverLevel2Text.fontSize = 20;
-        gameOverLevel2Text.alignment = TextAnchor.MiddleCenter;
-        gameOverLevel2Text.color = new Color(1.0f, 0.0f, 0.0f); // Set this to a random color for now
-
-        levelSelectorText.text = "Select Level";
-        levelSelectorText.fontSize = 15;
-        levelSelectorText.alignment = TextAnchor.MiddleCenter;
-        levelSelectorText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
+        gameOverText.text = "You Died!";
+        gameOverText.fontSize = 20;
+        gameOverText.alignment = TextAnchor.MiddleCenter;
+        gameOverText.color = new Color(1.0f, 0.0f, 0.0f); // Set this to a random color for now
 
         restartText.text = "Restart";
         restartText.fontSize = 15;
@@ -43,19 +36,26 @@ public class GameOverLevel2 : MonoBehaviour
         quitText.alignment = TextAnchor.MiddleCenter;
         quitText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
     }
-
-    public void PressLevelSelectorButton()
-    {
-        SceneManager.LoadScene("LevelSelector");
-    }
-
+    
     public void PressRestartButton()
     {
-        SceneManager.LoadScene("Level2");
+        GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().createRoomList();
+
+        List<string> roomList = GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().roomList;
+
+        if(roomList.Count > 0){
+            string nextRoom = roomList[0];
+            roomList.RemoveAt(0);
+            SceneManager.LoadScene(nextRoom);
+        }else{
+            Destroy(GameObject.Find("MainMenuScript"));
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void PressQuitButton()
     {
+        Destroy(GameObject.Find("MainMenuScript"));
         SceneManager.LoadScene("MainMenu");
     }
 }

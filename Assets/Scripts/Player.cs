@@ -59,37 +59,31 @@ public class Player : MonoBehaviour
         shieldBar.value = playerShield;
 
         // Show the game over screen when the player's health is at 0
-        ShowGameOverScreen();
-    }
-
-    void ShowGameOverScreen()
-    {
-        // If the player's health is at 0 and they're in Level 1, show the game over screen for Level 1
-        if (playerHealth <= 0.0f && currentScene.name == "Level1")
-        {
-            MainMenuScript.completedLevel1 = false;
-
-            SceneManager.LoadScene("GameOverLevel1");
-        }
-
-        // If the player's health is at 0 and they're in Level 2, show the game over screen for Level 2
-        else if (playerHealth <= 0.0f && currentScene.name == "Level2")
-        {
-            MainMenuScript.completedLevel2 = false;
-
-            SceneManager.LoadScene("GameOverLevel2");
-        }
-
-        // If the player's health is at 0 and they're in Level 3, show the game over screen for Level 3
-        else if (playerHealth <= 0.0f && currentScene.name == "Level3")
-        {
-            SceneManager.LoadScene("GameOverLevel3");
+        if(playerHealth <= 0.0f){
+            SceneManager.LoadScene("GameOver");
         }
     }
-
     void FixedUpdate()
     {
+        //rigid bodies should be moved in FixedUpdate()
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput.x * playerSpeed * Time.deltaTime, moveInput.y * playerSpeed * Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //if the target is reached go to next level or main menu if no next level exists
+        if(other.gameObject.tag == "Target"){
+
+            List<string> roomList = GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().roomList;
+            
+            if(roomList.Count > 0){
+                string nextRoom = roomList[0];
+                roomList.RemoveAt(0);
+                SceneManager.LoadScene(nextRoom);
+            }else{
+                SceneManager.LoadScene("GameWon");
+            }
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -119,8 +113,6 @@ public class Player : MonoBehaviour
                     playerHealth = playerHealth - lightDamage * Time.deltaTime;
                 }
             }
-            Debug.Log(playerShield);
-            Debug.Log(playerHealth);
         }
     }
 }
