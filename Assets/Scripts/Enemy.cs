@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+
+        isEnemyPatrolling = true;
+        patrolPointIndex = 0;
+
         enemySawPlayerLine1 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine1").GetComponent<AudioSource>();
         enemySawPlayerLine2 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine2").GetComponent<AudioSource>();
         enemySawPlayerLine3 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine3").GetComponent<AudioSource>();
@@ -35,16 +40,6 @@ public class Enemy : MonoBehaviour
         enemySawPlayerLine7 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine7").GetComponent<AudioSource>();
         enemySawPlayerLine8 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine8").GetComponent<AudioSource>();
         enemySawPlayerLine9 = GameObject.Find("EnemySawPlayerSounds/EnemySawPlayerLine9").GetComponent<AudioSource>();
-
-        /*enemySawPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemySawPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;*/
 
         enemyLostPlayerLine1 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine1").GetComponent<AudioSource>();
         enemyLostPlayerLine2 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine2").GetComponent<AudioSource>();
@@ -56,7 +51,17 @@ public class Enemy : MonoBehaviour
         enemyLostPlayerLine8 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine8").GetComponent<AudioSource>();
         enemyLostPlayerLine9 = GameObject.Find("EnemyLostSightSounds/EnemyLostSightLine9").GetComponent<AudioSource>();
 
-        /*enemyLostPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine5.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
+        enemySawPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
+
+        enemyLostPlayerLine1.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine2.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine3.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine4.volume = OptionsMenuScript.sfxVolumeSlider.value;
@@ -64,13 +69,7 @@ public class Enemy : MonoBehaviour
         enemyLostPlayerLine6.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine7.volume = OptionsMenuScript.sfxVolumeSlider.value;
         enemyLostPlayerLine8.volume = OptionsMenuScript.sfxVolumeSlider.value;
-        enemyLostPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;*/
-
-        patrolPointIndex = 0;
-
-        player = GameObject.Find("Player");
-
-        isEnemyPatrolling = true;
+        enemyLostPlayerLine9.volume = OptionsMenuScript.sfxVolumeSlider.value;
     }
 
     // Update is called once per frame

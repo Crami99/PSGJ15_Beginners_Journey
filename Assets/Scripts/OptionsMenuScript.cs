@@ -59,12 +59,12 @@ public class OptionsMenuScript : MonoBehaviour
         sfxVolumeText.alignment = TextAnchor.MiddleRight;
         sfxVolumeText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
 
-        musicVolumeSliderText.text = Mathf.RoundToInt(musicVolumeSlider.value).ToString() + "%";
+        musicVolumeSliderText.text = Mathf.RoundToInt(musicVolumeSlider.value * 100).ToString() + "%";
         musicVolumeSliderText.fontSize = 15;
         musicVolumeSliderText.alignment = TextAnchor.MiddleLeft;
         musicVolumeSliderText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
 
-        sfxVolumeSliderText.text = Mathf.RoundToInt(sfxVolumeSlider.value).ToString() + "%";
+        sfxVolumeSliderText.text = Mathf.RoundToInt(sfxVolumeSlider.value * 100).ToString() + "%";
         sfxVolumeSliderText.fontSize = 15;
         sfxVolumeSliderText.alignment = TextAnchor.MiddleLeft;
         sfxVolumeSliderText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
