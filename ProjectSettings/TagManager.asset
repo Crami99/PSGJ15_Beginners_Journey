@@ -8,6 +8,7 @@ TagManager:
   - Lightsource
   - Enemy
   - Obstacle
+  - MainMenu
   layers:
   - Default
   - TransparentFX

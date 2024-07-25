@@ -32,6 +32,9 @@ public class HowToPlayScript : MonoBehaviour
 
     public void PressBackButton()
     {
+        Debug.Log("Error: no Rooms in List");
+        Destroy(GameObject.Find("MainMenuScript"));
+        Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
     }
 }
