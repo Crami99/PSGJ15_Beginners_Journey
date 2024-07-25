@@ -32,6 +32,7 @@ public class HowToPlayScript : MonoBehaviour
 
     public void PressBackButton()
     {
+        Destroy(GameObject.Find("MainMenuScript"));
         SceneManager.LoadScene("MainMenu");
     }
 }
