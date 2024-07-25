@@ -20,23 +20,23 @@
     Materials:
         //they have no stats attributes rn
         Mushroom {1,2}
-        Slime Condensate {2,1} {3,2}
-        Moss {3,2}
-        Phials {6,1}
-        Metal Shard {2,4}
-        Spherical Jem {3,4}
-        Light jew drop {5,3}
-        Scarlet shard {6,4}
-        Flint {7,3}
-        Pyrite {6,5}
-        Broken Bone {8,5}
-        Feather {9,5}
         Juicy Fruit {1,8}
+        Slime Condensate {2,1} {3,2}
+        Metal Shard {2,4}
         Bug {2,8}
+        Moss {3,2}
+        Spherical Jem {3,4}
         Bread {4,9}
+        Light jew drop {5,3}
+        Phials {6,1}
+        Scarlet shard {6,4}
+        Pyrite {6,5}
         Crackers {6,9}
+        Flint {7,3}
         Maggot {7,6}
         ??? Hide {7,8}
+        Broken Bone {8,5}
+        Feather {9,5}
         Gloom bloom {9,8}
         Lead Bars {11,5}
 
