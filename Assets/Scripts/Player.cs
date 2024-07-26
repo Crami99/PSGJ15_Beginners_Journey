@@ -38,11 +38,15 @@ public class Player : MonoBehaviour
     private AudioSource combatMusic;
     List<string> combatClips;
 
+    private string path;
+
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
     // Start is called before the first frame update
     void Start()
     {
+        path = "Music/";
+
         status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
 
         playerSpeed = 200.0f;
@@ -66,13 +70,11 @@ public class Player : MonoBehaviour
 
         combatClips = new List<string> { "ShadowGameNoCombat", "ShadowGameCombat" };
 
-        for (int i = 0; i < combatClips.Count; i++)
-        {
-            string path = "Music/";
+        // Find the combat music path folder
+        path = "Music/";
 
-            combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[0]);
-            combatMusic.Play();
-        }
+        combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[0]);
+        combatMusic.Play(); // Play the no combat music
 
         lightDamage = 1;
         directLight = false;
@@ -140,8 +142,6 @@ public class Player : MonoBehaviour
             other.gameObject.name == "Torch" && combatMusic.isPlaying ||
             other.gameObject.tag == "Enemy" && combatMusic.isPlaying)
         {
-            string path = "Music/";
-
             combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[1]);
             combatMusic.Play();
         }
@@ -238,10 +238,9 @@ public class Player : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy"){
+        if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy")
+        {
             directLight = false;
-
-            string path = "Music/";
 
             combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[0]);
             combatMusic.Play();
