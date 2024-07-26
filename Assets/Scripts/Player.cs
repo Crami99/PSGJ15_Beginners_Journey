@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private Slider healthBar;
     private Slider shieldBar;
 
+    public GameObject[] playerInventory;
+
     public static GameObject inventoryHUD;
     public static GameObject pauseMenu;
 
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
 
         playerShield = status.playerShield;
         playerHealth = status.playerHealth;
+        
+        playerInventory = new GameObject[9];
 
         lightDamage = 1;
         directLight = false;
@@ -84,6 +88,11 @@ public class Player : MonoBehaviour
         // Show the game over screen when the player's health is at 0
         if(playerHealth <= 0.0f){
             SceneManager.LoadScene("GameOver");
+        }
+
+        //if the player presses the I key open the Inventory
+        if(Input.GetKeyDown(KeyCode.I)){
+            inventoryHUD.SetActive(true);
         }
 
         // If the player presses the O key and is holding a sword but not a serf
