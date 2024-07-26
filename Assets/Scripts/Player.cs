@@ -128,6 +128,30 @@ public class Player : MonoBehaviour
             serfItem.SetActive(false); // Hide the serf
             swordItem.SetActive(true); // Show the sword
         }
+
+        /*// If the player presses the P key and is holding a sword but not a serf (drop sword)
+        if (Input.GetKeyDown(KeyCode.P) && !serfItem.activeInHierarchy && swordItem.activeInHierarchy &&
+            sword1PickedUp || Input.GetKeyDown(KeyCode.P) && !serfItem.activeInHierarchy && swordItem.activeInHierarchy &&
+            sword2PickedUp)
+        {
+            sword1PickedUp = false;
+            sword2PickedUp = false;
+
+            transform.parent = null;
+            swordItem.transform.position = transform.position - new Vector3(0.5f, 0.0f, 0.0f);
+        }
+
+        // Else if the player presses the P key and is holding a serf but not a sword (drop serf)
+        else if (Input.GetKeyDown(KeyCode.P) && serfItem.activeInHierarchy && !swordItem.activeInHierarchy &&
+            serf1PickedUp || Input.GetKeyDown(KeyCode.P) && serfItem.activeInHierarchy && !swordItem.activeInHierarchy &&
+            serf2PickedUp)
+        {
+            serf1PickedUp = false;
+            serf2PickedUp = false;
+
+            transform.parent = null;
+            serfItem.transform.position = transform.position - new Vector3(1.0f, 0.0f, 0.0f);
+        }*/
     }
     void FixedUpdate()
     {
