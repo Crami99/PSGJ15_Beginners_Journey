@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     public static bool serf1PickedUp;
     public static bool serf2PickedUp;
 
+    private AudioSource combatMusic;
+    List<string> combatClips;
+
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
     // Start is called before the first frame update
@@ -46,6 +49,30 @@ public class Player : MonoBehaviour
 
         playerShield = status.playerShield;
         playerHealth = status.playerHealth;
+
+        combatMusic = GameObject.Find("PlayerMusic").GetComponent<AudioSource>();
+
+        if (PlayerPrefs.GetFloat("MusicSliderValue") != null)
+        {
+            combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue");
+        }
+
+        else
+        {
+            combatMusic.volume = 100f;
+        }
+
+        combatMusic.loop = true;
+
+        combatClips = new List<string> { "ShadowGameNoCombat", "ShadowGameCombat" };
+
+        for (int i = 0; i < combatClips.Count; i++)
+        {
+            string path = "Music/";
+
+            combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[0]);
+            combatMusic.Play();
+        }
 
         lightDamage = 1;
         directLight = false;
@@ -108,13 +135,26 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.name == "Torch" && !combatMusic.isPlaying ||
+            other.gameObject.tag == "Enemy" && !combatMusic.isPlaying ||
+            other.gameObject.name == "Torch" && combatMusic.isPlaying ||
+            other.gameObject.tag == "Enemy" && combatMusic.isPlaying)
+        {
+            string path = "Music/";
+
+            combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[1]);
+            combatMusic.Play();
+        }
+        
         //if the target is reached go to next level or main menu if no next level exists
-        if(other.gameObject.tag == "Target"){
-            
+        if (other.gameObject.tag == "Target")
+        {
+
             List<string> roomList = GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().roomList;
-            
-            if(roomList.Count > 0){
-                
+
+            if (roomList.Count > 0)
+            {
+
                 status.playerHealth = playerHealth;
                 status.playerShield = playerShield;
 
@@ -123,7 +163,9 @@ public class Player : MonoBehaviour
                 string nextRoom = roomList[roomIndex];
                 roomList.RemoveAt(roomIndex);
                 SceneManager.LoadScene(nextRoom);
-            }else{
+            }
+            else
+            {
                 SceneManager.LoadScene("GameWon");
             }
         }
@@ -165,8 +207,8 @@ public class Player : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy"){
-
+        if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy")
+        {
             Vector2 dir = transform.position - other.gameObject.transform.position;
 
             RaycastHit2D[] results = new RaycastHit2D[10];
@@ -198,6 +240,11 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy"){
             directLight = false;
+
+            string path = "Music/";
+
+            combatMusic.clip = Resources.Load<AudioClip>(path + combatClips[0]);
+            combatMusic.Play();
         }
     }
 }
