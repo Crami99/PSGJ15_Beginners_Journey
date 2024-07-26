@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -13,7 +12,10 @@ public class MainMenuScript : MonoBehaviour
     private Text levelSelectorText;
     private Text optionsText;
     private Text creditsText;
+
     public List<string> roomList = new List<string>();
+
+    
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class MainMenuScript : MonoBehaviour
     private void Start()
     {
         mainMenuText = GameObject.Find("MainMenuText").GetComponent<Text>();
+
         playText = GameObject.Find("PlayText").GetComponent<Text>();
         howToPlayText = GameObject.Find("HowToPlayText").GetComponent<Text>();
         optionsText = GameObject.Find("OptionsText").GetComponent<Text>();
