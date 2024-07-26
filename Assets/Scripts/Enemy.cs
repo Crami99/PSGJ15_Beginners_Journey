@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform[] patrolPoints;
+    Transform[] patrolPoints;
     private int patrolPointIndex;
 
     private float timeToLookAround;
 
     private GameObject player;
 
-    public static bool isEnemyPatrolling;
+    public bool isEnemyPatrolling;
 
     AudioSource audioSrc;
     List<string> spottedClips;
@@ -57,6 +57,15 @@ public class Enemy : MonoBehaviour
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
         lostClips = new List<string> {"Come", "ComeBack", "ComeOut", "DamnIt", "LostHim", "TimeToLook", "Where", "WillFind", "YouThink"};
+
+        //get patrolPoints
+        int pointCount = gameObject.transform.parent.Find("PatrolPoints").childCount;
+
+        patrolPoints = new Transform[pointCount];
+
+        for(int i = 0; i < pointCount; i++){
+            patrolPoints[i] = gameObject.transform.parent.Find("PatrolPoints").GetChild(i);
+        }
     }
 
     // Update is called once per frame
@@ -69,77 +78,18 @@ public class Enemy : MonoBehaviour
     {
         if (isEnemyPatrolling == true)
         {
-            switch (patrolPointIndex)
-            {
-                case 0:
-                    transform.position = Vector3.MoveTowards(transform.position,
-                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
-
+            if(transform.position != patrolPoints[patrolPointIndex].transform.position){
+                //move towards patrolPoint
+                transform.position = Vector3.MoveTowards(transform.position, patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+            }else{
+                if(timeToLookAround >= 2f){
+                    //wait
                     timeToLookAround += Time.deltaTime;
-
-                    transform.position = transform.position;
-
-
-                    if (timeToLookAround >= 2.0f)
-                    {
-                        timeToLookAround = 0.0f;
-
-                        patrolPointIndex = 1;
-                    }
-
-                    break;
-
-                case 1:
-                    transform.position = Vector3.MoveTowards(transform.position,
-                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
-
-                    timeToLookAround += Time.deltaTime;
-
-                    transform.position = transform.position;
-
-                    if (timeToLookAround >= 2.0f)
-                    {
-                        timeToLookAround = 0.0f;
-
-                        patrolPointIndex = 2;
-                    }
-
-                    break;
-
-                case 2:
-                    transform.position = Vector3.MoveTowards(transform.position,
-                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
-
-                    timeToLookAround += Time.deltaTime;
-
-                    transform.position = transform.position;
-
-                    if (timeToLookAround >= 2.0f)
-                    {
-                        timeToLookAround = 0.0f;
-
-                        patrolPointIndex = 3;
-                    }
-
-                    break;
-
-                case 3:
-                    transform.position = Vector3.MoveTowards(transform.position,
-                        patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
-
-                    timeToLookAround += Time.deltaTime;
-
-                    transform.position = transform.position;
-
-
-                    if (timeToLookAround >= 2.0f)
-                    {
-                        timeToLookAround = 0.0f;
-
-                        patrolPointIndex = 0;
-                    }
-
-                    break;
+                }else{
+                    timeToLookAround = 0f;
+                    patrolPointIndex ++;
+                    patrolPointIndex = patrolPointIndex % 4;
+                }
             }
         }
     }
