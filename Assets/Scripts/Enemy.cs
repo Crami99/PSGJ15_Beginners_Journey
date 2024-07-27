@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
 
+    private Animator enemyAnimator;
+
     public bool isEnemyPatrolling;
 
     AudioSource audioSrc;
@@ -22,6 +25,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+
+        enemyAnimator = GetComponent<Animator>();
+
+        enemyAnimator.gameObject.GetComponent<Animator>().enabled = false;
 
         isEnemyPatrolling = true;
         patrolPointIndex = 0;
@@ -118,7 +125,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
         {
             // If the enemy is not close enough to the player, then move towards the player
-            if (Vector3.Distance(transform.position, player.transform.position) > 1.0f)
+            if (Vector3.Distance(transform.position, player.transform.position) > 4.0f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
                 Time.deltaTime * 10.0f);
@@ -128,6 +135,18 @@ public class Enemy : MonoBehaviour
             else if (Vector3.Distance(transform.position, player.transform.position) <= 1.0f)
             {
                 transform.position = transform.position;
+            }
+
+            enemyAnimator.gameObject.GetComponent<Animator>().enabled = true;
+            enemyAnimator.Play("EnemyAttack");
+
+            if (Player.playerShield > 0)
+            {
+                Player.playerShield = Player.playerShield - 5.0f * Time.deltaTime;
+            }
+            else
+            {
+                Player.playerHealth = Player.playerHealth - 5.0f * Time.deltaTime;
             }
         }
     }
@@ -139,6 +158,7 @@ public class Enemy : MonoBehaviour
             PlayEnemyLostPlayerLines();
 
             isEnemyPatrolling = true;
+            enemyAnimator.gameObject.GetComponent<Animator>().enabled = false;
         }
     }
 }

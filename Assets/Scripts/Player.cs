@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     PlayerStatus status;
 
     private float playerSpeed;
-    private float playerHealth;
-    private float playerShield;
+    public static float playerHealth;
+    public static float playerShield;
 
     public bool directLight;
     private float lightDamage;
