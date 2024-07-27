@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,10 +22,40 @@ public class Enemy : MonoBehaviour
     List<string> spottedClips;
     List<string> lostClips;
 
+    private Slider enemyHealthBar1;
+    private Slider enemyShieldBar1;
+
+    private float enemyHealthValue1;
+    private float enemyShieldValue1;
+
+    private Slider enemyHealthBar2;
+    private Slider enemyShieldBar2;
+
+    private float enemyHealthValue2;
+    private float enemyShieldValue2;
+
+    private Slider enemyHealthBar3;
+    private Slider enemyShieldBar3;
+
+    private float enemyHealthValue3;
+    private float enemyShieldValue3;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+
+        enemyHealthBar1 = GameObject.Find("EnemyHealthBar1").GetComponentInChildren<Slider>();
+        enemyShieldBar1 = GameObject.Find("EnemyShieldBar1").GetComponentInChildren<Slider>();
+
+        enemyHealthBar2 = GameObject.Find("EnemyHealthBar2").GetComponentInChildren<Slider>();
+        enemyShieldBar2 = GameObject.Find("EnemyShieldBar2").GetComponentInChildren<Slider>();
+
+        enemyHealthBar3 = GameObject.Find("EnemyHealthBar3").GetComponentInChildren<Slider>();
+        enemyShieldBar3 = GameObject.Find("EnemyShieldBar3").GetComponentInChildren<Slider>();
+
+        enemyHealthValue1 = 100.0f;
+        enemyShieldValue1 = 100.0f;
 
         enemyAnimator = GetComponent<Animator>();
 
@@ -59,6 +90,33 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         EnemyPatrolling();
+
+        //enemyHealthBar.value = enemyHealthValue;
+        //enemyShieldBar.value = enemyShieldValue;
+
+        // For now, destroy the 1st enemy if their health and shield values are at 0
+        if (enemyHealthBar1.value <= 0.0f && enemyShieldBar1.value <= 0.0f)
+        {
+            GameObject enemy1 = GameObject.Find("PatrolingEnemy");
+
+            Destroy(enemy1);
+        }
+
+        // For now, destroy the 2nd enemy if their health and shield values are at 0
+        if (enemyHealthBar2.value <= 0.0f && enemyShieldBar2.value <= 0.0f)
+        {
+            GameObject enemy2 = GameObject.Find("PatrolingEnemy (1)");
+
+            Destroy(enemy2);
+        }
+
+        // For now, destroy the 3rd enemy if their health and shield values are at 0
+        if (enemyHealthBar3.value <= 0.0f && enemyShieldBar3.value <= 0.0f)
+        {
+            GameObject enemy3 = GameObject.Find("PatrolingEnemy (2)");
+
+            Destroy(enemy3);
+        }
     }
 
     private void EnemyPatrolling()
