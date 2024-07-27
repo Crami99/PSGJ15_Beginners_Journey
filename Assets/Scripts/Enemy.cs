@@ -139,15 +139,6 @@ public class Enemy : MonoBehaviour
 
             enemyAnimator.gameObject.GetComponent<Animator>().enabled = true;
             enemyAnimator.Play("EnemyAttack");
-
-            if (Player.playerShield > 0)
-            {
-                Player.playerShield = Player.playerShield - 5.0f * Time.deltaTime;
-            }
-            else
-            {
-                Player.playerHealth = Player.playerHealth - 5.0f * Time.deltaTime;
-            }
         }
     }
 
