@@ -21,7 +21,7 @@ public class Sword : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player" && transform.position.x <= swordHit.transform.position.x &&
-                transform.position.y <= swordHit.transform.position.y)
+                transform.position.y <= swordHit.transform.position.y && transform != null)
         {
             if (Player.playerShield > 0)
             {

@@ -22,23 +22,15 @@ public class Enemy : MonoBehaviour
     List<string> spottedClips;
     List<string> lostClips;
 
+    // Reference to the different enemy health and shield slider bars
     private Slider enemyHealthBar1;
     private Slider enemyShieldBar1;
-
-    private float enemyHealthValue1;
-    private float enemyShieldValue1;
 
     private Slider enemyHealthBar2;
     private Slider enemyShieldBar2;
 
-    private float enemyHealthValue2;
-    private float enemyShieldValue2;
-
     private Slider enemyHealthBar3;
     private Slider enemyShieldBar3;
-
-    private float enemyHealthValue3;
-    private float enemyShieldValue3;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +45,6 @@ public class Enemy : MonoBehaviour
 
         enemyHealthBar3 = GameObject.Find("EnemyHealthBar3").GetComponentInChildren<Slider>();
         enemyShieldBar3 = GameObject.Find("EnemyShieldBar3").GetComponentInChildren<Slider>();
-
-        enemyHealthValue1 = 100.0f;
-        enemyShieldValue1 = 100.0f;
 
         enemyAnimator = GetComponent<Animator>();
 
@@ -90,9 +79,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         EnemyPatrolling();
-
-        //enemyHealthBar.value = enemyHealthValue;
-        //enemyShieldBar.value = enemyShieldValue;
 
         // For now, destroy the 1st enemy if their health and shield values are at 0
         if (enemyHealthBar1.value <= 0.0f && enemyShieldBar1.value <= 0.0f)
@@ -197,6 +183,45 @@ public class Enemy : MonoBehaviour
 
             enemyAnimator.gameObject.GetComponent<Animator>().enabled = true;
             enemyAnimator.Play("EnemyAttack");
+        }
+
+        // If enemy 1 has collided with the player
+        if (gameObject.name == "Enemy1" && collision.gameObject.tag == "Player")
+        {
+            if (enemyShieldBar1.value > 0)
+            {
+                enemyShieldBar1.value = enemyShieldBar1.value - 15.0f * Time.deltaTime;
+            }
+            else
+            {
+                enemyHealthBar1.value = enemyHealthBar1.value - 30.0f * Time.deltaTime;
+            }
+        }
+
+        // If enemy 2 has collided with the player
+        else if (gameObject.name == "Enemy2" && collision.gameObject.tag == "Player")
+        {
+            if (enemyShieldBar2.value > 0)
+            {
+                enemyShieldBar2.value = enemyShieldBar2.value - 15.0f * Time.deltaTime;
+            }
+            else
+            {
+                enemyHealthBar2.value = enemyHealthBar2.value - 30.0f * Time.deltaTime;
+            }
+        }
+
+        // If enemy 3 has collided with the player
+        else if (gameObject.name == "Enemy3" && collision.gameObject.tag == "Player")
+        {
+            if (enemyShieldBar3.value > 0)
+            {
+                enemyShieldBar3.value = enemyShieldBar3.value - 15.0f * Time.deltaTime;
+            }
+            else
+            {
+                enemyHealthBar3.value = enemyHealthBar3.value - 30.0f * Time.deltaTime;
+            }
         }
     }
 
