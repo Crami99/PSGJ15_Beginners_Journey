@@ -1,0 +1,72 @@
+//
+    // Fuctionality of the items
+    Grid Possition {X, -Y};
+    GridSize == 32x32;
+    
+    ItemStats[]{
+        
+        var Speed;
+        var HealthIncrease;
+        var Shield;
+        var Amplifier;
+        var ProjectileDamage;
+        var BaseDamage;
+        var SuppresDuration;
+        var CritChance;
+        //var Stealth;
+    }
+
+    Passive items: 
+        LightPendant {1,4} == Shield;
+        BrokenKey {4,3} == BaseDamage;
+        TorchRag {1,3} == SuppresDuration;
+        BrokenSword {3,5} == CritChance;
+        ArrowHead {1,9} == BaseDamage;
+        SightPendant {2,9} == BaseDamage;
+        OldGoblinShoe {9,3} == Speed;
+        CrystalChunk {1,5} == Amplifier;
+        Peny Pouch {5,6} == SuppresDuration;
+        Fang {5,8} == BaseDamage;
+        leather strip {1,10} == SuppresDuration;
+        Mushroom {1,2} == Speed;
+        JuicyFruit {1,8} == HealthIncrease;
+        SlimeCondensate {2,1} {3,2} == SuppresDuration;
+        MetalShard {2,4} == CritChance;
+        Bug {2,8} == HealthIncrease;
+        Moss {3,2} == SuppresDuration;
+        SphericalJem {3,4} == Shield;
+        Bread {4,9} == HealthIncrease;
+        Lightjew drop {5,3} == Amplifier;
+        EmptyPhial {6,1} == Amplifier;
+        OilPhial {7,1} == SuppresDuration;
+        DragonBloodPhial {8,1} == HealthIncrease;
+        PhialOfSpeed {9,1} == Speed;
+        ScarletShard {6,4} == CritChance;
+        Pyrite {6,5} == ProjectileDamage;
+        Crackers {6,9} == CritChance;
+        Flint {7,3} == ProjectileDamage;
+        Maggot {7,6} == Amplifier;
+        "???"Hide {7,8} == Shield;
+        BrokenBone {8,5} == BaseDamage;
+        Feather {9,5} == Speed;
+        Gloombloom {9,8} == BaseDamage;
+        LeadBars {11,5} == Shield;
+        EnchantedFragment {3,9} == Amplifier;
+        Star {8,10} == Amplifier;
+        VoidShard {11,6} == Shield, SuppresDuration;
+        GlassShard {10,8} == ProjectileDamage, CritChance;
+        VoidPendant {2,11} == SuppresDuration,HealthIncrease; 
+        LightCell {1,11} == Amplifier, Shield;
+        EctoplasmOnABottle {13,3} == SuppresDuration;
+        EmpltyVial {1,13} == Amplifier;
+        VialOfVenom {1,14} == BaseDamage;
+        VialOfPetrificationPowder {1,15} == SuppresDuration;
+        VialOfMysticPowder {1,16} == Shield;
+        ShadowCandle {12,7} == HealthIncrease, Amplifier;
+        EnigmaticScripture {10,10} == SuppresDuration;
+        UncannyEye {5,11} == HealthIncrease,Amplifier,SuppresDuration;
+        SealScraps {7,11} == Amplifier;
+        ForbiddenFragment {14,7} == SuppresDuration, Shield;
+
+
+//
