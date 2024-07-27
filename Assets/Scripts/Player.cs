@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     public RaycastHit2D[] results = new RaycastHit2D[10];
 
+    private Animator playerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour
         playerHealth = status.playerHealth;
 
         combatMusic = GameObject.Find("PlayerMusic").GetComponent<AudioSource>();
+
+        playerAnimator = GetComponent<Animator>();
 
         if (PlayerPrefs.GetFloat("MusicSliderValue") != null)
         {
@@ -104,8 +108,33 @@ public class Player : MonoBehaviour
     {
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
-        
+
         moveInput.Normalize();
+
+        if (moveInput.x > 0)
+        {
+            playerAnimator.Play("MoveRight");
+        }
+
+        else if (moveInput.x < 0)
+        {
+            playerAnimator.Play("MoveLeft");
+        }
+
+        if (moveInput.y > 0)
+        {
+            playerAnimator.Play("MoveUp");
+        }
+
+        else if (moveInput.y < 0)
+        {
+            playerAnimator.Play("MoveDown");
+        }
+
+        if (moveInput.x == 0 && moveInput.y == 0)
+        {
+            playerAnimator.Play("Idle");
+        }
 
         healthBar.value = playerHealth;
         shieldBar.value = playerShield;
