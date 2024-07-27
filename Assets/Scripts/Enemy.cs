@@ -117,8 +117,18 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
+            // If the enemy is not close enough to the player, then move towards the player
+            if (Vector3.Distance(transform.position, player.transform.position) > 1.0f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
                 Time.deltaTime * 10.0f);
+            }
+
+            // If the enemy gets way too close to the player, then stop the enemy from moving
+            else if (Vector3.Distance(transform.position, player.transform.position) <= 1.0f)
+            {
+                transform.position = transform.position;
+            }
         }
     }
 
