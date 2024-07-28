@@ -18,7 +18,7 @@ public class CraftingSlotScript : MonoBehaviour, IDropHandler
     {
         int[,] shape = eventData.pointerDrag.GetComponent<ItemScript>().shape;
 
-        if(eventData.pointerDrag != null && uiScript.fit(xCord, yCord, shape)){
+        if(uiScript.fit(xCord, yCord, shape)){
             eventData.pointerDrag.GetComponent<RectTransform>().SetParent(transform);
         }
     }

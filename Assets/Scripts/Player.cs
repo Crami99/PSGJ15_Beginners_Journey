@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private Slider healthBar;
     private Slider shieldBar;
 
-    public GameObject[] playerInventory;
+    public List<GameObject> playerInventory;
 
     public static GameObject inventoryHUD;
     public static GameObject pauseMenu;
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         playerShield = status.playerShield;
         playerHealth = status.playerHealth;
         
-        playerInventory = new GameObject[9];
+        playerInventory = new List<GameObject>(9);
 
         lightDamage = 1;
         directLight = false;
@@ -57,21 +57,11 @@ public class Player : MonoBehaviour
         healthBar = GameObject.Find("Health Bar Slider").GetComponent<Slider>();
         shieldBar = GameObject.Find("Shield Bar Slider").GetComponent<Slider>();
 
-        swordItem = GameObject.Find("Sword item");
-
-        serfItem = GameObject.Find("Serf item");
-
         inventoryHUD = GameObject.Find("Inventory UI");
         inventoryHUD.SetActive(false);
 
         pauseMenu = GameObject.Find("Pause Menu UI");
         pauseMenu.SetActive(false);
-
-        sword1PickedUp = false;
-        sword2PickedUp = false;
-
-        serf1PickedUp = false;
-        serf2PickedUp = false;
     }
 
     // Update is called once per frame
@@ -94,21 +84,8 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.I)){
             inventoryHUD.SetActive(true);
         }
-
-        // If the player presses the O key and is holding a sword but not a serf
-        if (Input.GetKeyDown(KeyCode.O) && !serfItem.activeInHierarchy && swordItem.activeInHierarchy)
-        {
-            serfItem.SetActive(true); // Show the serf
-            swordItem.SetActive(false); // Hide the sword
-        }
-
-        // Else if the player presses the O key and is holding a serf but not a sword
-        else if (Input.GetKeyDown(KeyCode.O) && serfItem.activeInHierarchy && !swordItem.activeInHierarchy)
-        {
-            serfItem.SetActive(false); // Hide the serf
-            swordItem.SetActive(true); // Show the sword
-        }
     }
+
     void FixedUpdate()
     {
         //rigid bodies should be moved in FixedUpdate()

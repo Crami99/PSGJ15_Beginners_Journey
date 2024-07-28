@@ -12,26 +12,35 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
                            {0, 0, 0, 0, 0},
                            {0, 0, 0, 0, 0}};
 
-    RectTransform rectTransform;
     CanvasGroup canvasGroup;
 
     InventoryUI uiScript;
 
     void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
         uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.tag == "Player"){
+            if(other.gameObject.GetComponent<Player>().playerInventory.Count < 9){
+                // add to player Inventory
+                other.gameObject.GetComponent<Player>().playerInventory.Add(gameObject);
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                //gameObject.GetComponent<RawImage>().enabled = true;
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
 
-        CraftingSlotScript slotScript = rectTransform.parent.GetComponent<CraftingSlotScript>();
+        CraftingSlotScript slotScript = transform.parent.GetComponent<CraftingSlotScript>();
 
-        if(rectTransform.parent.tag == "AlchemySlot"){
+        if(transform.parent.tag == "AlchemySlot"){
             uiScript.remove(slotScript.xCord, slotScript.yCord, shape);
         }
     }
@@ -43,13 +52,19 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     
     public void OnDrag(PointerEventData eventData)
     {
-        //transform.position += new Vector3 (eventData.delta.x, eventData.delta.y, 0);
-        rectTransform.anchoredPosition += eventData.delta;
+        transform.position += new Vector3 (eventData.delta.x, eventData.delta.y, 0);
+        //transform.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
         transform.position = transform.parent.GetComponent<Transform>().position;
+
+        //block grid to avoid edgecase
+        if(transform.parent.tag == "AlchemySlot"){
+            CraftingSlotScript slotScript = transform.parent.GetComponent<CraftingSlotScript>();
+            uiScript.fit(slotScript.xCord, slotScript.yCord, shape);
+        }
     }
 }

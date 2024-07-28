@@ -18,13 +18,21 @@ public class InventoryUI : MonoBehaviour
 
     Transform craftingBackground;
     Transform slots;
+    Transform inventorySlots;
+
+    bool dragging;
+
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         inventoryTitleText = GameObject.Find("Inventory Title Text").GetComponent<Text>();
         
-        Transform slots = transform.Find("Canvas/Crafting/Slots").transform;
+        slots = transform.Find("Canvas/Crafting/Slots").transform;
+        inventorySlots = transform.Find("Canvas/InventorySlots").transform;
+
+        player = GameObject.Find("Player");
         
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
@@ -67,6 +75,17 @@ public class InventoryUI : MonoBehaviour
         //if I is pressed leave Inventory
         if(Input.GetKeyDown(KeyCode.I)){
             PressBackButton();
+        }
+
+        //update from playerInventory
+        for(int i = 0; i < player.GetComponent<Player>().playerInventory.Count; i++){
+
+            GameObject item = player.GetComponent<Player>().playerInventory[i];
+
+            item.transform.SetParent(inventorySlots.GetChild(i));
+            item.transform.position = item.transform.parent.position;
+
+            item.transform.localScale = new Vector3(130, 130, 0);
         }
 
         for(int y = 0; y < 5; y++){
