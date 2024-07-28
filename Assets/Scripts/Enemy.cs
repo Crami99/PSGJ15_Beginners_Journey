@@ -32,10 +32,14 @@ public class Enemy : MonoBehaviour
     private Slider enemyHealthBar3;
     private Slider enemyShieldBar3;
 
+    private Rigidbody2D rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+
+        rigidbody = GetComponent<Rigidbody2D>();
 
         enemyHealthBar1 = GameObject.Find("EnemyHealthBar1").GetComponentInChildren<Slider>();
         enemyShieldBar1 = GameObject.Find("EnemyShieldBar1").GetComponentInChildren<Slider>();
@@ -47,8 +51,6 @@ public class Enemy : MonoBehaviour
         enemyShieldBar3 = GameObject.Find("EnemyShieldBar3").GetComponentInChildren<Slider>();
 
         enemyAnimator = GetComponent<Animator>();
-
-        enemyAnimator.gameObject.GetComponent<Animator>().enabled = false;
 
         isEnemyPatrolling = true;
         patrolPointIndex = 0;
@@ -84,7 +86,6 @@ public class Enemy : MonoBehaviour
         if (enemyHealthBar1.value <= 0.0f && enemyShieldBar1.value <= 0.0f)
         {
             GameObject enemy1 = GameObject.Find("PatrolingEnemy");
-
             Destroy(enemy1);
         }
 
@@ -92,7 +93,6 @@ public class Enemy : MonoBehaviour
         if (enemyHealthBar2.value <= 0.0f && enemyShieldBar2.value <= 0.0f)
         {
             GameObject enemy2 = GameObject.Find("PatrolingEnemy (1)");
-
             Destroy(enemy2);
         }
 
@@ -100,7 +100,6 @@ public class Enemy : MonoBehaviour
         if (enemyHealthBar3.value <= 0.0f && enemyShieldBar3.value <= 0.0f)
         {
             GameObject enemy3 = GameObject.Find("PatrolingEnemy (2)");
-
             Destroy(enemy3);
         }
     }
@@ -168,6 +167,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
         {
+            enemyAnimator.Play("EnemyAttack");
+
             // If the enemy is not close enough to the player, then move towards the player
             if (Vector3.Distance(transform.position, player.transform.position) > 4.0f)
             {
@@ -180,9 +181,6 @@ public class Enemy : MonoBehaviour
             {
                 transform.position = transform.position;
             }
-
-            enemyAnimator.gameObject.GetComponent<Animator>().enabled = true;
-            enemyAnimator.Play("EnemyAttack");
         }
 
         // If enemy 1 has collided with the player
