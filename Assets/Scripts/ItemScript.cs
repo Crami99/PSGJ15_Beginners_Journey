@@ -15,16 +15,27 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     RectTransform rectTransform;
     CanvasGroup canvasGroup;
 
+    InventoryUI uiScript;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+
+        uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = false;
+
+        CraftingSlotScript slotScript = rectTransform.parent.GetComponent<CraftingSlotScript>();
+
+        if(rectTransform.parent.tag == "AlchemySlot"){
+            uiScript.remove(slotScript.xCord, slotScript.yCord, shape);
+        }
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
 

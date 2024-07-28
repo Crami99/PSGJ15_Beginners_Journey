@@ -12,6 +12,7 @@ TagManager:
   - Sword
   - Serf
   - Item
+  - AlchemySlot
   layers:
   - Default
   - TransparentFX

@@ -91,22 +91,43 @@ public class InventoryUI : MonoBehaviour
         craftingBackground.Rotate(new Vector3(0, 0, -0.1f));
     }
 
-    //tries to fir the passed shape into the carfting grid; on success true is returned and tcraftingGridStaus is ajusted
+    //tries to fit the passed shape into the carfting grid; on success true is returned and tcraftingGridStaus is ajusted
     //shape has to be 5x5 array
     public bool fit(int xCord, int yCord, int[,] shape)
     {
+        //Check if shape fits
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
-                if(shape[x,y] == 1){
-                    if(craftingGridStatus[x,y] != 0){
+                if(shape[y,x] == 1){
+                    //if part of shape outside of array abort
+                    if(y + yCord - 2 < 0 || y + yCord - 2 > 4 || x + xCord - 2 < 0 || x + xCord - 2 > 4){
                         return false;
-                    }else{
-                        craftingGridStatus[x,y] = 1;
+                    }
+                    if(craftingGridStatus[y + yCord - 2, x + xCord - 2] != 0){
+                        return false;
                     }
                 }
             }
         }
+        //mark shape
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                if(shape[y,x] == 1){
+                    craftingGridStatus[y + yCord - 2, x + xCord - 2] = 1;
+                }
+            }
+        }
         return true;
+    }
+
+    public void remove (int xCord, int yCord, int[,] shape){
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                if(shape[y,x] == 1){
+                    craftingGridStatus[y + yCord - 2, x + xCord - 2] = 0;
+                }
+            }
+        }
     }
 
     public void PressBackButton()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7179172479465171106}
   m_Layer: 0
   m_Name: Crafting Slot (22)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -65}
+  m_AnchoredPosition: {x: 85, y: -85}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6489643325066104243
@@ -221,7 +221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &6861820562969392159
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 4582425779872913591}
   m_Layer: 0
   m_Name: Crafting Slot (16)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 8394044469685683821}
   m_Layer: 0
   m_Name: Crafting Slot (20)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 4246213472612222479}
   m_Layer: 0
   m_Name: Crafting Slot (11)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 4094728367050627944}
   m_Layer: 0
   m_Name: Crafting Slot (14)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 6744182101829824118}
   m_Layer: 0
   m_Name: Crafting Slot (10)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 5485787797072255054}
   m_Layer: 0
   m_Name: Crafting Slot (8)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1025,7 +1025,7 @@ GameObject:
   - component: {fileID: 1829105876817316051}
   m_Layer: 0
   m_Name: Crafting Slot (15)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 296531316914771680}
   m_Layer: 0
   m_Name: Crafting Slot (5)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1304,7 +1304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 0}
+  m_AnchoredPosition: {x: -400, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3621094696043961342
@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 8623286770477035452}
   m_Layer: 0
   m_Name: Crafting Slot (12)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 8356916880735953779}
   m_Layer: 0
   m_Name: Crafting Slot (4)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1651,6 +1651,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df267534a6356c2409e0110fd97f954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4076098734898226232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070838447646166256}
+  - component: {fileID: 3627220872852582076}
+  - component: {fileID: 7925249133259117851}
+  - component: {fileID: 117735796644028527}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1070838447646166256
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076098734898226232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 979840614131954285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3627220872852582076
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076098734898226232}
+  m_CullTransparentMesh: 1
+--- !u!114 &7925249133259117851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076098734898226232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &117735796644028527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076098734898226232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6598ce1e12b71c04782e0666829775e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4160154479421200187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1753,7 @@ GameObject:
   - component: {fileID: 2571663860827331717}
   m_Layer: 0
   m_Name: Crafting Slot (21)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1916,7 +2004,7 @@ GameObject:
   - component: {fileID: 6872851286557398448}
   m_Layer: 0
   m_Name: Crafting Slot (6)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2003,7 +2091,7 @@ GameObject:
   - component: {fileID: 2758675801942251513}
   m_Layer: 0
   m_Name: Crafting Slot (7)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2090,7 +2178,7 @@ GameObject:
   - component: {fileID: 3694738948753340047}
   m_Layer: 0
   m_Name: Crafting Slot (0)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2252,7 +2340,7 @@ GameObject:
   - component: {fileID: 5236277799399418261}
   m_Layer: 0
   m_Name: Crafting Slot (19)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2424,7 +2512,7 @@ GameObject:
   - component: {fileID: 8684363282064427141}
   m_Layer: 0
   m_Name: Crafting Slot (13)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2511,7 +2599,7 @@ GameObject:
   - component: {fileID: 5771125123428741800}
   m_Layer: 0
   m_Name: Crafting Slot (1)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2626,8 +2714,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 400, y: 6}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: 400, y: 0}
+  m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4934338415160458200
 MonoBehaviour:
@@ -2649,8 +2737,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 130, y: 130}
-  m_Spacing: {x: 40, y: 30}
+  m_CellSize: {x: 170, y: 170}
+  m_Spacing: {x: 40, y: 40}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &6856919061359732058
@@ -2831,7 +2919,7 @@ GameObject:
   - component: {fileID: 6758484690447464027}
   m_Layer: 0
   m_Name: Crafting Slot (9)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2918,7 +3006,7 @@ GameObject:
   - component: {fileID: 7674425938243133808}
   m_Layer: 0
   m_Name: Crafting Slot (24)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3005,7 +3093,7 @@ GameObject:
   - component: {fileID: 7768109189306892654}
   m_Layer: 0
   m_Name: Crafting Slot (23)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3177,7 +3265,7 @@ GameObject:
   - component: {fileID: 1819838528681970326}
   m_Layer: 0
   m_Name: Crafting Slot (2)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3264,7 +3352,7 @@ GameObject:
   - component: {fileID: 1063724691277501943}
   m_Layer: 0
   m_Name: Crafting Slot (18)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3419,6 +3507,7 @@ RectTransform:
   - {fileID: 8730405826621474207}
   - {fileID: 7396467018887383620}
   - {fileID: 3363214582848420988}
+  - {fileID: 1070838447646166256}
   m_Father: {fileID: 3677721306469168575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3538,7 +3627,7 @@ GameObject:
   - component: {fileID: 6472634094864523667}
   m_Layer: 0
   m_Name: Crafting Slot (17)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3611,104 +3700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xCord: 0
   yCord: 0
---- !u!1 &8772154702862713456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 425990037113354369}
-  - component: {fileID: 1872381969359629366}
-  - component: {fileID: 6448100729322815981}
-  - component: {fileID: 6842977331031610132}
-  - component: {fileID: 738281756452525212}
-  m_Layer: 0
-  m_Name: Item
-  m_TagString: Item
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &425990037113354369
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772154702862713456}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6617088731203212152}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -65}
-  m_SizeDelta: {x: 130, y: 130}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1872381969359629366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772154702862713456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f301ff2f0e5bef48b7e578da728b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!222 &6448100729322815981
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772154702862713456}
-  m_CullTransparentMesh: 1
---- !u!114 &6842977331031610132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772154702862713456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!225 &738281756452525212
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772154702862713456}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &9108166538796035469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,7 +3714,7 @@ GameObject:
   - component: {fileID: 1399300711732263010}
   m_Layer: 0
   m_Name: Crafting Slot (3)
-  m_TagString: Untagged
+  m_TagString: AlchemySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3882,3 +3873,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df267534a6356c2409e0110fd97f954a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &3601622164637822907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6617088731203212152}
+    m_Modifications:
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208268381002575307, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+      propertyPath: m_Name
+      value: Item1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+--- !u!224 &425990037113354369 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3752312026426644282, guid: a1b0f7ee01765ca47939ec3fa2175d6b, type: 3}
+  m_PrefabInstance: {fileID: 3601622164637822907}
+  m_PrefabAsset: {fileID: 0}
