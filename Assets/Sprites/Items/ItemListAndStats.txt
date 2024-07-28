@@ -3,7 +3,7 @@
     Grid Possition {X, -Y};
     GridSize == 32x32;
     
-    ItemStats[]{
+    Stats[]{
         
         var Speed;
         var HealthIncrease;
@@ -32,7 +32,7 @@
         JuicyFruit {1,8} == HealthIncrease;
         SlimeCondensate {2,1} {3,2} == SuppresDuration;
         MetalShard {2,4} == CritChance;
-        Bug {2,8} == HealthIncrease;
+        Jake {2,8} == HealthIncrease, BaseDamage ;
         Moss {3,2} == SuppresDuration;
         SphericalJem {3,4} == Shield;
         Bread {4,9} == HealthIncrease;
@@ -41,6 +41,7 @@
         OilPhial {7,1} == SuppresDuration;
         DragonBloodPhial {8,1} == HealthIncrease;
         PhialOfSpeed {9,1} == Speed;
+        PhialOfPixieDust {10,1} == Shield;
         ScarletShard {6,4} == CritChance;
         Pyrite {6,5} == ProjectileDamage;
         Crackers {6,9} == CritChance;
@@ -57,7 +58,7 @@
         GlassShard {10,8} == ProjectileDamage, CritChance;
         VoidPendant {2,11} == SuppresDuration,HealthIncrease; 
         LightCell {1,11} == Amplifier, Shield;
-        EctoplasmOnABottle {13,3} == SuppresDuration;
+        EctoplasmOnABottle {5,13} == SuppresDuration;
         EmpltyVial {1,13} == Amplifier;
         VialOfVenom {1,14} == BaseDamage;
         VialOfPetrificationPowder {1,15} == SuppresDuration;
@@ -66,7 +67,15 @@
         EnigmaticScripture {10,10} == SuppresDuration;
         UncannyEye {5,11} == HealthIncrease,Amplifier,SuppresDuration;
         SealScraps {7,11} == Amplifier;
-        ForbiddenFragment {14,7} == SuppresDuration, Shield;
+        ForbiddenFragment {7,12} == SuppresDuration, Shield;
+        Vertebra {9,11} == HealthIncrease;
+        ShadowScale {2,12} == SuppresDuration;
+        SpiderSilk {11,11},{12,12} == Amplifier;
+        EnergyBoostingBean {4,14} == Speed;
+        FlaskOfShadowBlood {8,13} == HealthIncrease;
+        IronScale {13,7} ==  CritChance;
+        GoldSap {12,9} == Shield;
+        
 
 
 //
