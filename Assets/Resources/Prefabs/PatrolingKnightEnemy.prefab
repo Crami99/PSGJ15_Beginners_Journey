@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 5657754416975160590}
   - component: {fileID: 255235313682775452}
   - component: {fileID: 5387171329306611092}
-  - component: {fileID: 4579798324658269024}
   - component: {fileID: 1708464561993009191}
   - component: {fileID: 7371091667409966732}
+  - component: {fileID: 9189530260755280607}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: -0.04, y: 4, z: 89.56442}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8222358041919512714}
@@ -112,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2f4fdc1b5dc9c842af1de26a8c0d4f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,41 +203,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4579798324658269024
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412652919610690528}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &1708464561993009191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +314,60 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &9189530260755280607
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412652919610690528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.14999999, y: 0.11}
+      - {x: -0.16, y: 0.08}
+      - {x: -0.16, y: -0.049999997}
+      - {x: -0.089999996, y: -0.089999996}
+      - {x: 0.08, y: -0.089999996}
+      - {x: 0.11, y: -0.08}
+      - {x: 0.16, y: -0.049999997}
+      - {x: 0.16, y: 0.089999996}
+      - {x: 0.14999999, y: 0.11}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1489970936345022469
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267487703928848753}
   m_Layer: 0
-  m_Name: PatrolingEnemy
+  m_Name: PatrolingKnightEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,6 +797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torch
       objectReference: {fileID: 0}
+    - target: {fileID: 4852999751437762916, guid: 79597a77fb1e209429c5a2378e61fb56, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c5c9a9e11d561149a62a09c51c10326, type: 3}
     - target: {fileID: 4943430846855789285, guid: 79597a77fb1e209429c5a2378e61fb56, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -817,6 +840,14 @@ PrefabInstance:
     - target: {fileID: 4943430846855789285, guid: 79597a77fb1e209429c5a2378e61fb56, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891542595376617339, guid: 79597a77fb1e209429c5a2378e61fb56, type: 3}
+      propertyPath: m_Radius
+      value: 4.4793234
+      objectReference: {fileID: 0}
+    - target: {fileID: 5891542595376617339, guid: 79597a77fb1e209429c5a2378e61fb56, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03046248
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

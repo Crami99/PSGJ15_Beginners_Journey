@@ -1354,8 +1354,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  healthMod: 0
   shield: 0
+  shieldMod: 0
   speed: 0
+  speedMod: 0
   inventory: []
   roomList: []
 --- !u!1 &2037795520
