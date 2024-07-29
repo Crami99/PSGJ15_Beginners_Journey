@@ -31,23 +31,9 @@ public class Enemy : MonoBehaviour
 
         audioSrc = gameObject.GetComponent<AudioSource>();
 
-        if(PlayerPrefs.GetFloat("SFXSliderValue") != null){
-            audioSrc.volume = PlayerPrefs.GetFloat("SFXSliderValue");
-        }else{
-            audioSrc.volume = 100f;
-        }
-
-        if (PlayerPrefs.GetFloat("MusicSliderValue") != null)
-        {
-            combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue");
-            noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue");
-        }
-
-        else
-        {
-            combatMusic.volume = 100f;
-            noCombatMusic.volume = 100f;
-        }
+        audioSrc.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+        combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+        noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
 
         combatMusic.loop = true;
         noCombatMusic.loop = true;

@@ -47,11 +47,11 @@ public class Player : MonoBehaviour
         
         moveInput.Normalize();
 
-        healthBar.value = status.health;
-        shieldBar.value = status.shield;
+        healthBar.value = status.health + status.healthMod;
+        shieldBar.value = status.shield + status.shieldMod;
 
-        // Show the game over screen when the player's health is at 0
-        if(status.health <= 0.0f){
+        // Show the game over screen when the player's health is lower than healthMod
+        if(status.health + status.healthMod <= 0){
             SceneManager.LoadScene("GameOver");
         }
 
@@ -64,7 +64,8 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         //rigid bodies should be moved in FixedUpdate()
-        GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput.x * status.speed * Time.deltaTime, moveInput.y * status.speed * Time.deltaTime);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput.x * status.speed * status.speedMod * Time.deltaTime,
+                                                           moveInput.y * status.speed * status.speedMod * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour
             }
 
             if(directLight){
-                if(status.shield > 0){
+                if(status.shield +status.shieldMod > 0){
                     status.shield = status.shield - lightDamage * Time.deltaTime;
                 }else{
                     status.health = status.health - lightDamage * Time.deltaTime;

@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class GameWon : MonoBehaviour
 {
     PlayerStatus status;
-    private Text gameOverText;
+
+    private Text gameWonText;
     private Text restartText;
     private Text quitText;
 
@@ -16,18 +17,14 @@ public class GameOver : MonoBehaviour
     {
         status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
 
-        gameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
+        gameWonText = GameObject.Find("GameWonText").GetComponent<Text>();
         restartText = GameObject.Find("RestartText").GetComponent<Text>();
         quitText = GameObject.Find("QuitText").GetComponent<Text>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        gameOverText.text = "You Died!";
-        gameOverText.fontSize = 20;
-        gameOverText.alignment = TextAnchor.MiddleCenter;
-        gameOverText.color = new Color(1.0f, 0.0f, 0.0f); // Set this to a random color for now
+        
+        gameWonText.text = "You Escaped!";
+        gameWonText.fontSize = 20;
+        gameWonText.alignment = TextAnchor.MiddleCenter;
+        gameWonText.color = new Color(1.0f, 0.0f, 0.0f); // Set this to a random color for now
 
         restartText.text = "Restart";
         restartText.fontSize = 15;
@@ -39,7 +36,13 @@ public class GameOver : MonoBehaviour
         quitText.alignment = TextAnchor.MiddleCenter;
         quitText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
     }
-    
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void PressRestartButton()
     {
         status.Restart();

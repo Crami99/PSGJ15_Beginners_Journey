@@ -8,11 +8,11 @@ public class InventoryUI : MonoBehaviour
     private Text inventoryTitleText;
 
     //0 = slot open, 1 = slot full, 2 = slot locked
-    int[,] craftingGridStatus = {{2, 2, 0, 2, 2},
-                                 {2, 0, 0, 0, 2},
+    int[,] craftingGridStatus = {{2, 0, 0, 0, 2},
                                  {0, 0, 0, 0, 0},
-                                 {2, 0, 0, 0, 2},
-                                 {2, 2, 0, 2, 2}};
+                                 {0, 0, 0, 0, 0},
+                                 {0, 0, 0, 0, 0},
+                                 {2, 0, 0, 0, 2}};
 
     GameObject[,] craftingSlot = new GameObject[5,5];
 
@@ -156,7 +156,8 @@ public class InventoryUI : MonoBehaviour
 
     //makes sure all items are displayed at the correct position in Ui
     public void UpdateInv()
-    {
+    {   
+        //Debug.Log(inventorySlots);
         //get Inventory from status.inventory
         for(int i = 0; i < status.inventory.Count; i++){
             GameObject item = status.inventory[i];
@@ -167,9 +168,11 @@ public class InventoryUI : MonoBehaviour
             item.transform.localScale = new Vector3(130, 130, 0);
         }
 
+        //Debug.Log(alchemySlots);
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
                 if(status.alchemy[y,x] != null){
+                    
                     status.alchemy[y,x].transform.SetParent(alchemySlots.GetChild(y * 5 + x));
                     status.alchemy[y,x].transform.position = status.alchemy[y,x].transform.parent.position;
                     Fit(x, y, status.alchemy[y,x].GetComponent<ItemScript>().shape);
@@ -180,7 +183,7 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    //makes sure all Items in inventory get DontDestroyOnLoad
+    //makes sure all Items in inventory get DontDestroyOnLoad and updates player values
     public void CloseInv()
     {
         // Hide the inventory HUD and resume game
@@ -196,15 +199,27 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
+        float curShieldMod = 0;
+        float curHealthMod = 0;
+        float curSpeedMod = 1;
+
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
                 if(status.alchemy[y,x] != null){
-
                     GameObject item = status.alchemy[y,x];
                     item.transform.SetParent(null);
                     DontDestroyOnLoad(item);
+
+                    curShieldMod += item.GetComponent<ItemScript>().shieldMod;
+                    curHealthMod += item.GetComponent<ItemScript>().healthMod;
+                    curSpeedMod += item.GetComponent<ItemScript>().speedMod;
                 }
             }
         }
+        status.shieldMod = curShieldMod;
+        status.healthMod = curHealthMod;
+        status.speedMod = curSpeedMod;
+
+        //Debug.Log("Shield Mod: " + status.shieldMod + " Health Mod:" + status.healthMod + " Speed Mod: " + status.speedMod);
     }
 }

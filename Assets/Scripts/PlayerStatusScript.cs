@@ -7,9 +7,14 @@ public class PlayerStatus : MonoBehaviour
 {
     //only read from these after loading scene, only write to these before unloading scene
     public float health;
+    public float healthMod;
+
+    public const float shieldBase = 100f;
     public float shield;
+    public float shieldMod;
 
     public float speed;
+    public float speedMod;
 
     public List<GameObject> inventory;
     public GameObject[,] alchemy;
@@ -35,9 +40,14 @@ public class PlayerStatus : MonoBehaviour
 
     public void ResetStats(){
         health = 100f;
-        shield = 100f;
+        healthMod = 0f;
+        
+        shield = shieldBase;
+        shieldMod = 0f;
+        
 
         speed =  200f;
+        speedMod = 1;
 
         inventory = new List<GameObject>();
         alchemy = new GameObject[5,5];
@@ -47,7 +57,7 @@ public class PlayerStatus : MonoBehaviour
     {
         //add all rooms to room list
         roomList.Add("Room 1");
-        //roomList.Add("Room 2");
+        roomList.Add("Room 2");
         roomList.Add("Room 1");
         
     }
