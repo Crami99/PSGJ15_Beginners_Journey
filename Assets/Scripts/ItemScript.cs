@@ -90,9 +90,12 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
     //find new scripts after scene change
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
-        playerScript = GameObject.Find("Player").GetComponent<Player>();
-        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
+        if(GameObject.Find("Inventory UI") != null){
+            uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
+            playerScript = GameObject.Find("Player").GetComponent<Player>();
+            status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
+        }
+        
     }
     
     void OnTriggerEnter2D(Collider2D other){

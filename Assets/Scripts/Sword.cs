@@ -5,11 +5,13 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     private Transform swordHit;
+    PlayerStatus status;
 
     // Start is called before the first frame update
     void Start()
     {
         swordHit = GameObject.Find("SwordHit").GetComponent<Transform>();
+        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -23,13 +25,13 @@ public class Sword : MonoBehaviour
         if (collision.gameObject.name == "Player" && transform.position.x <= swordHit.transform.position.x &&
                 transform.position.y <= swordHit.transform.position.y && transform != null)
         {
-            if (Player.playerShield > 0)
+            if (status.shield + status.shieldMod> 0)
             {
-                Player.playerShield = Player.playerShield - 5.0f * Time.deltaTime;
+                status.shield = status.shield - 5.0f * Time.deltaTime;
             }
             else
             {
-                Player.playerHealth = Player.playerHealth - 5.0f * Time.deltaTime;
+                status.health = status.health - 5.0f * Time.deltaTime;
             }
         }
     }

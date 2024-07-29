@@ -19,7 +19,7 @@ public class PlayerStatus : MonoBehaviour
     public List<GameObject> inventory;
     public GameObject[,] alchemy;
 
-    public List<string> roomList = new List<string>();
+    public List<string> roomList;
 
     void Awake()
     {
@@ -56,6 +56,7 @@ public class PlayerStatus : MonoBehaviour
     public void CreateRoomList()
     {
         //add all rooms to room list
+        roomList = new List<string>();
         roomList.Add("Room 1");
         roomList.Add("Room 2");
         roomList.Add("Room 1");
