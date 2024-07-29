@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 2036737904}
   m_Layer: 0
   m_Name: PlayerStatus
-  m_TagString: Untagged
+  m_TagString: Status
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1353,8 +1353,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ba79f0c91d0eb4eb465655d7acabe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 0
-  playerShield: 0
+  health: 0
+  shield: 0
+  speed: 0
+  inventory: []
+  roomList: []
 --- !u!1 &2037795520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a620038458893d145b48a9d83f0d4426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomList: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

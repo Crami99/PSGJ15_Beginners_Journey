@@ -17,26 +17,35 @@ public class InventoryUI : MonoBehaviour
     GameObject[,] craftingSlot = new GameObject[5,5];
 
     Transform craftingBackground;
-    Transform slots;
+    Transform alchemySlots;
     Transform inventorySlots;
 
     bool dragging;
 
     GameObject player;
 
+    PlayerStatus status;
+
     // Start is called before the first frame update
     void Start()
     {
         inventoryTitleText = GameObject.Find("Inventory Title Text").GetComponent<Text>();
         
-        slots = transform.Find("Canvas/Crafting/Slots").transform;
+        alchemySlots = transform.Find("Canvas/Crafting/Slots").transform;
         inventorySlots = transform.Find("Canvas/InventorySlots").transform;
 
         player = GameObject.Find("Player");
+        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
         
+        //initialize inventory
+        for(int i = 0; i < 9; i++){
+            inventorySlots.GetChild(i).GetComponent<InvSlotScript>().index = i;
+        }
+
+        //initialize Crafting Grid
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
-                craftingSlot[y,x] = slots.GetChild(y * 5 + x).gameObject;
+                craftingSlot[y,x] = alchemySlots.GetChild(y * 5 + x).gameObject;
 
                 //tell the child its coordinates
                 craftingSlot[y,x].GetComponent<CraftingSlotScript>().xCord = x;
@@ -74,19 +83,14 @@ public class InventoryUI : MonoBehaviour
 
         //if I is pressed leave Inventory
         if(Input.GetKeyDown(KeyCode.I)){
-            PressBackButton();
+            CloseInv();
         }
 
         //update from playerInventory
-        for(int i = 0; i < player.GetComponent<Player>().playerInventory.Count; i++){
-
-            GameObject item = player.GetComponent<Player>().playerInventory[i];
-
-            item.transform.SetParent(inventorySlots.GetChild(i));
-            item.transform.position = item.transform.parent.position;
-
-            item.transform.localScale = new Vector3(130, 130, 0);
+        if(Input.GetKeyUp(KeyCode.I)){
+            UpdateInv();
         }
+        
 
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
@@ -112,13 +116,13 @@ public class InventoryUI : MonoBehaviour
 
     //tries to fit the passed shape into the carfting grid; on success true is returned and tcraftingGridStaus is ajusted
     //shape has to be 5x5 array
-    public bool fit(int xCord, int yCord, int[,] shape)
+    public bool Fit(int xCord, int yCord, int[,] shape)
     {
         //Check if shape fits
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
                 if(shape[y,x] == 1){
-                    //if part of shape outside of array abort
+                    //if part of shape outside of array return false
                     if(y + yCord - 2 < 0 || y + yCord - 2 > 4 || x + xCord - 2 < 0 || x + xCord - 2 > 4){
                         return false;
                     }
@@ -139,7 +143,8 @@ public class InventoryUI : MonoBehaviour
         return true;
     }
 
-    public void remove (int xCord, int yCord, int[,] shape){
+    public void remove (int xCord, int yCord, int[,] shape)
+    {
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
                 if(shape[y,x] == 1){
@@ -149,9 +154,57 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void PressBackButton()
+    //makes sure all items are displayed at the correct position in Ui
+    public void UpdateInv()
+    {
+        //get Inventory from status.inventory
+        for(int i = 0; i < status.inventory.Count; i++){
+            GameObject item = status.inventory[i];
+
+            item.transform.SetParent(inventorySlots.GetChild(i));
+            item.transform.position = item.transform.parent.position;
+
+            item.transform.localScale = new Vector3(130, 130, 0);
+        }
+
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                if(status.alchemy[y,x] != null){
+                    status.alchemy[y,x].transform.SetParent(alchemySlots.GetChild(y * 5 + x));
+                    status.alchemy[y,x].transform.position = status.alchemy[y,x].transform.parent.position;
+                    Fit(x, y, status.alchemy[y,x].GetComponent<ItemScript>().shape);
+
+                }
+            }
+        }
+
+    }
+
+    //makes sure all Items in inventory get DontDestroyOnLoad
+    public void CloseInv()
     {
         // Hide the inventory HUD and resume game
         gameObject.SetActive(false);
+
+        //move childs back to status
+        for(int i = 0; i < inventorySlots.childCount; i++){
+            if(inventorySlots.GetChild(i).childCount > 0){
+                GameObject item = inventorySlots.GetChild(i).GetChild(0).gameObject;
+
+                item.transform.SetParent(null);
+                DontDestroyOnLoad(item);
+            }
+        }
+
+        for(int y = 0; y < 5; y++){
+            for(int x = 0; x < 5; x++){
+                if(status.alchemy[y,x] != null){
+
+                    GameObject item = status.alchemy[y,x];
+                    item.transform.SetParent(null);
+                    DontDestroyOnLoad(item);
+                }
+            }
+        }
     }
 }

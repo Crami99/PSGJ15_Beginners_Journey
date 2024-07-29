@@ -9,17 +9,17 @@ public class CraftingSlotScript : MonoBehaviour, IDropHandler
     public int yCord;
 
     InventoryUI uiScript;
-    
-    void Awake()
-    {
-        uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
-    }
+    PlayerStatus status;
+
     public void OnDrop(PointerEventData eventData)
     {
         int[,] shape = eventData.pointerDrag.GetComponent<ItemScript>().shape;
 
-        if(uiScript.fit(xCord, yCord, shape)){
+        if(GameObject.Find("Inventory UI").GetComponent<InventoryUI>().Fit(xCord, yCord, shape)){
+            //make dragged object child of current slot
             eventData.pointerDrag.GetComponent<RectTransform>().SetParent(transform);
+
+            GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>().alchemy[yCord, xCord] = transform.GetChild(0).gameObject;
         }
     }
 }

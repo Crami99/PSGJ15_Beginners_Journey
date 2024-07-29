@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class InvSlotScript : MonoBehaviour, IDropHandler
 {
+    public int index;
     public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag != null && transform.childCount == 0){

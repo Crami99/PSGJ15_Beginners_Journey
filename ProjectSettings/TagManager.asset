@@ -9,10 +9,10 @@ TagManager:
   - Enemy
   - Obstacle
   - MainMenu
-  - Sword
-  - Serf
   - Item
   - AlchemySlot
+  - InventorySlot
+  - Status
   layers:
   - Default
   - TransparentFX

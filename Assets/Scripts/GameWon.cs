@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameWon : MonoBehaviour
 {
+    PlayerStatus status;
+
     private Text gameWonText;
     private Text restartText;
     private Text quitText;
@@ -13,6 +15,8 @@ public class GameWon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
+
         gameWonText = GameObject.Find("GameWonText").GetComponent<Text>();
         restartText = GameObject.Find("RestartText").GetComponent<Text>();
         quitText = GameObject.Find("QuitText").GetComponent<Text>();
@@ -39,28 +43,13 @@ public class GameWon : MonoBehaviour
 
     public void PressRestartButton()
     {
-        GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>().ResetStats();
-        GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().createRoomList();
-
-        List<string> roomList = GameObject.Find("MainMenuScript").GetComponent<MainMenuScript>().roomList;
-
-        if(roomList.Count > 0){
-            int roomIndex = Random.Range(0, roomList.Count);
-            string nextRoom = roomList[roomIndex];
-            roomList.RemoveAt(roomIndex);
-            SceneManager.LoadScene(nextRoom);
-        }else{
-            Debug.Log("Error: no Rooms in List");
-            Destroy(GameObject.Find("MainMenuScript"));
-            Destroy(GameObject.Find("PlayerStatusScript"));
-            SceneManager.LoadScene("MainMenu");
-        }
+        status.Restart();
+        status.NextRoom();
     }
 
     public void PressQuitButton()
     {
-        GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>().ResetStats();
-        Destroy(GameObject.Find("MainMenuScript"));
+        status.ResetStats();
         SceneManager.LoadScene("MainMenu");
     }
 }

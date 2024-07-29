@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+    PlayerStatus status;
+
     private Text mainMenuText;
     private Text playText;
     private Text howToPlayText;
@@ -13,31 +15,16 @@ public class MainMenuScript : MonoBehaviour
     private Text optionsText;
     private Text creditsText;
 
-    public List<string> roomList = new List<string>();
-
-    
-
-    void Awake()
-    {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("MainMenu");
-
-        if (objs.Length > 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-    }
     private void Start()
     {
+        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
+
         mainMenuText = GameObject.Find("MainMenuText").GetComponent<Text>();
 
         playText = GameObject.Find("PlayText").GetComponent<Text>();
         howToPlayText = GameObject.Find("HowToPlayText").GetComponent<Text>();
         optionsText = GameObject.Find("OptionsText").GetComponent<Text>();
         creditsText = GameObject.Find("CreditsText").GetComponent<Text>();
-
-        createRoomList();
     }
 
     private void Update()
@@ -68,25 +55,11 @@ public class MainMenuScript : MonoBehaviour
         creditsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
     }
 
-    public void createRoomList()
-    {
-        //add all rooms to room list
-        roomList.Add("Room 1");
-        roomList.Add("Room 1");
-        //roomList.Add("Room 2");
-    }
-
     public void PressPlayButton()
     {
-        if(roomList.Count > 0){
-            //if there are rooms, go to rendom romm
-            int roomIndex = Random.Range(0, roomList.Count);
-            string nextRoom = roomList[roomIndex];
-            roomList.RemoveAt(roomIndex);
-            SceneManager.LoadScene(nextRoom);
-        }else{
-            Debug.Log("Error: no Rooms in List");
-        }
+        status.Restart();
+
+        status.NextRoom();
     }
 
     public void PressHowToPlayButton()

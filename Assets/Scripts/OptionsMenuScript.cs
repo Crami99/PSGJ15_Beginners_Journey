@@ -34,11 +34,7 @@ public class OptionsMenuScript : MonoBehaviour
 
         musicVolumeSliderText = GameObject.Find("MusicVolumeSliderText").GetComponent<Text>();
         sfxVolumeSliderText = GameObject.Find("SFXVolumeSliderText").GetComponent<Text>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         optionsText.text = "Options";
         optionsText.fontSize = 20;
         optionsText.alignment = TextAnchor.MiddleCenter;
@@ -68,6 +64,42 @@ public class OptionsMenuScript : MonoBehaviour
         sfxVolumeSliderText.fontSize = 15;
         sfxVolumeSliderText.alignment = TextAnchor.MiddleLeft;
         sfxVolumeSliderText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        /*
+        optionsText.text = "Options";
+        optionsText.fontSize = 20;
+        optionsText.alignment = TextAnchor.MiddleCenter;
+        optionsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
+
+        backText.text = "Back";
+        backText.fontSize = 15;
+        backText.alignment = TextAnchor.MiddleCenter;
+        backText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
+
+        musicVolumeText.text = "Music Volume";
+        musicVolumeText.fontSize = 15;
+        musicVolumeText.alignment = TextAnchor.MiddleRight;
+        musicVolumeText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
+
+        sfxVolumeText.text = "SFX Volume";
+        sfxVolumeText.fontSize = 15;
+        sfxVolumeText.alignment = TextAnchor.MiddleRight;
+        sfxVolumeText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
+
+        musicVolumeSliderText.text = Mathf.RoundToInt(musicVolumeSlider.value * 100).ToString() + "%";
+        musicVolumeSliderText.fontSize = 15;
+        musicVolumeSliderText.alignment = TextAnchor.MiddleLeft;
+        musicVolumeSliderText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
+
+        sfxVolumeSliderText.text = Mathf.RoundToInt(sfxVolumeSlider.value * 100).ToString() + "%";
+        sfxVolumeSliderText.fontSize = 15;
+        sfxVolumeSliderText.alignment = TextAnchor.MiddleLeft;
+        sfxVolumeSliderText.color = new Color(1.0f, 1.0f, 1.0f); // Set this to a random color for now
+        */
     }
 
     public void SaveMusicVolumeSlider()

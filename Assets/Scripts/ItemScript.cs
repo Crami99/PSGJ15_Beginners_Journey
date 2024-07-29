@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+
+public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, IDragHandler
 {
     //0 not part of shape, 1 part of shape
     public int[,] shape = {{0, 0, 0, 0, 0},
@@ -15,21 +16,25 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     CanvasGroup canvasGroup;
 
     InventoryUI uiScript;
+    Player playerScript;
+    PlayerStatus status;
 
     void Awake()
-    {
+    {   
+        //get relevant components
         canvasGroup = GetComponent<CanvasGroup>();
-
         uiScript = GameObject.Find("Inventory UI").GetComponent<InventoryUI>();
+        playerScript = GameObject.Find("Player").GetComponent<Player>();
+        status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag == "Player"){
-            if(other.gameObject.GetComponent<Player>().playerInventory.Count < 9){
+            if(status.inventory.Count < 9){
                 // add to player Inventory
-                other.gameObject.GetComponent<Player>().playerInventory.Add(gameObject);
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                //gameObject.GetComponent<RawImage>().enabled = true;
+                DontDestroyOnLoad(gameObject);
+                status.inventory.Add(gameObject);
+                HideItem();
             }
         }
     }
@@ -38,18 +43,28 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
     {
         canvasGroup.blocksRaycasts = false;
 
-        CraftingSlotScript slotScript = transform.parent.GetComponent<CraftingSlotScript>();
-
         if(transform.parent.tag == "AlchemySlot"){
+            //remove from Crafting
+            CraftingSlotScript slotScript = transform.parent.GetComponent<CraftingSlotScript>();
             uiScript.remove(slotScript.xCord, slotScript.yCord, shape);
+
+            status.alchemy[slotScript.yCord, slotScript.xCord] = null;
+        }
+
+        if(transform.parent.tag == "InventorySlot"){
+            //remove Item from Inventroy
+            InvSlotScript slotScript = transform.parent.GetComponent<InvSlotScript>();
+            status.inventory.RemoveAt(slotScript.index);
         }
     }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-
-    }
     
+    public void HideItem()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<UnityEngine.Rendering.Universal.Light2D>().enabled = false;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         transform.position += new Vector3 (eventData.delta.x, eventData.delta.y, 0);
@@ -64,7 +79,12 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IBeginDragHandler,
         //block grid to avoid edgecase
         if(transform.parent.tag == "AlchemySlot"){
             CraftingSlotScript slotScript = transform.parent.GetComponent<CraftingSlotScript>();
-            uiScript.fit(slotScript.xCord, slotScript.yCord, shape);
+            uiScript.Fit(slotScript.xCord, slotScript.yCord, shape);
         }
+
+        if(transform.parent.tag == "InventorySlot"){
+            status.inventory.Add(transform.gameObject);
+        }
+        uiScript.UpdateInv();
     }
 }
