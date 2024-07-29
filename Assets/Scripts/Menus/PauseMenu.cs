@@ -32,7 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PressQuitButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
     }
 
 }
