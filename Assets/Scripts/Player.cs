@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
 
     private string path;
 
+    AudioSource playerHitLightSound;
+    List<string> playerHitLightClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +59,11 @@ public class Player : MonoBehaviour
 
         musicSource.clip = Resources.Load<AudioClip>(path + musicClips[0]);
         musicSource.Play();
+
+        playerHitLightSound = GameObject.Find("PlayerCollidedWithLight").GetComponent<AudioSource>();
+        playerHitLightSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        playerHitLightClips = new List<string> { "player touching light", "player burning from light" };
     }
 
     // Update is called once per frame
@@ -99,6 +107,21 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Target"){ 
             status.NextRoom();
         }
+
+        if (other.gameObject.name == "Torch" && !musicSource.isPlaying ||
+            other.gameObject.tag == "Enemy" && !musicSource.isPlaying ||
+            other.gameObject.name == "Torch" && musicSource.isPlaying ||
+            other.gameObject.tag == "Enemy" && musicSource.isPlaying)
+        {
+            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[1]);
+            musicSource.Play();
+        }
+
+        if (other.gameObject.tag == "Lightsource" && !playerHitLightSound.isPlaying)
+        {
+            playerHitLightSound.clip = Resources.Load<AudioClip>("SoundEffects/Player/" + playerHitLightClips[0]);
+            playerHitLightSound.Play();
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -121,8 +144,11 @@ public class Player : MonoBehaviour
                 }
             }
 
-            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[1]);
-            musicSource.Play();
+            if (!playerHitLightSound.isPlaying)
+            {
+                playerHitLightSound.clip = Resources.Load<AudioClip>("SoundEffects/Player/" + playerHitLightClips[1]);
+                playerHitLightSound.Play();
+            }
 
             if (directLight){
                 if(status.shield +status.shieldMod > 0){

@@ -189,8 +189,10 @@ public class InventoryUI : MonoBehaviour
         // Hide the inventory HUD and resume game
         gameObject.SetActive(false);
 
+        PlayerStatus.buttonPressSound.Play();
+
         //move childs back to status
-        for(int i = 0; i < inventorySlots.childCount; i++){
+        for (int i = 0; i < inventorySlots.childCount; i++){
             if(inventorySlots.GetChild(i).childCount > 0){
                 GameObject item = inventorySlots.GetChild(i).GetChild(0).gameObject;
 

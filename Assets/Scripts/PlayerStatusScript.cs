@@ -22,6 +22,7 @@ public class PlayerStatus : MonoBehaviour
     public List<string> roomList;
 
     public static AudioSource menuMusic;
+    public static AudioSource buttonPressSound;
 
     void Awake()
     {
@@ -41,6 +42,13 @@ public class PlayerStatus : MonoBehaviour
         menuMusic.Play();
 
         DontDestroyOnLoad(menuMusic);
+
+        buttonPressSound = GameObject.Find("ButtonPressSound").GetComponent<AudioSource>();
+        buttonPressSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        buttonPressSound.clip = Resources.Load<AudioClip>("SoundEffects/main menu button press");
+
+        DontDestroyOnLoad(buttonPressSound);
     }
     // Start is called before the first frame update
     void Start()

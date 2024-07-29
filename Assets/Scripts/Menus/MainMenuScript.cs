@@ -62,19 +62,27 @@ public class MainMenuScript : MonoBehaviour
         status.Restart();
 
         status.NextRoom();
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressHowToPlayButton()
     {
         SceneManager.LoadScene("HowToPlay");
+
+        PlayerStatus.buttonPressSound.Play();
     }
     public void PressOptionsButton()
     {
         SceneManager.LoadScene("OptionsMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressCreditsButton()
     {
         SceneManager.LoadScene("CreditsMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }

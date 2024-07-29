@@ -103,5 +103,7 @@ public class CreditsMenuScript : MonoBehaviour
         Destroy(GameObject.Find("MainMenuScript"));
         Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }

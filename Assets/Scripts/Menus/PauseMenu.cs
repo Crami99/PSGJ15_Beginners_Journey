@@ -28,6 +28,8 @@ public class PauseMenu : MonoBehaviour
     public void PressResumeButton()
     {
         gameObject.SetActive(false);
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressQuitButton()
@@ -35,6 +37,8 @@ public class PauseMenu : MonoBehaviour
         Destroy(GameObject.Find("MainMenuScript"));
         Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
 }

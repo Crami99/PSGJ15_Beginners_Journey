@@ -47,11 +47,15 @@ public class GameWon : MonoBehaviour
     {
         status.Restart();
         status.NextRoom();
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressQuitButton()
     {
         status.ResetStats();
         SceneManager.LoadScene("MainMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }

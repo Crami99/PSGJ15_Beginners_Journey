@@ -21,11 +21,15 @@ public class PlayerHUD : MonoBehaviour
     {
         // Open up the inventory HUD for the player
         Player.inventoryHUD.SetActive(true);
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressPauseButton()
     {
         // Open the pause menu for the player
         Player.pauseMenu.SetActive(true);
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }

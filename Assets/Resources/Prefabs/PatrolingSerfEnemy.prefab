@@ -214,8 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemyPatrolling: 0
-  combatMusic: {fileID: 0}
-  noCombatMusic: {fileID: 0}
 --- !u!82 &7371091667409966732
 AudioSource:
   m_ObjectHideFlags: 0

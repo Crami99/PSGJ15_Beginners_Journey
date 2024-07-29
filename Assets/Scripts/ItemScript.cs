@@ -23,6 +23,8 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
     Player playerScript;
     PlayerStatus status;
 
+    private AudioSource itemPickedUp;
+
     void Awake()
     {   
         //get relevant components
@@ -87,6 +89,14 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
         }
     }
 
+    private void Start()
+    {
+        itemPickedUp = GetComponent<AudioSource>();
+        itemPickedUp.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        itemPickedUp.clip = Resources.Load<AudioClip>("SoundEffects/Player/player item pickup");
+    }
+
     //find new scripts after scene change
     private void ChangedActiveScene(Scene current, Scene next)
     {
@@ -105,6 +115,8 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
                 DontDestroyOnLoad(gameObject);
                 status.inventory.Add(gameObject);
                 HideItem();
+
+                itemPickedUp.Play();
             }
         }
     }

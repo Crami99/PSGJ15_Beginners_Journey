@@ -11,6 +11,8 @@ public class GameOver : MonoBehaviour
     private Text restartText;
     private Text quitText;
 
+    private AudioSource playerDeathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,14 @@ public class GameOver : MonoBehaviour
         quitText.fontSize = 15;
         quitText.alignment = TextAnchor.MiddleCenter;
         quitText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-    
+
+        playerDeathSound = GetComponent<AudioSource>();
+
+        playerDeathSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+        playerDeathSound.clip = Resources.Load<AudioClip>("SoundEffects/Player/player death");
+
+        playerDeathSound.Play();
+
     }
 
     // Update is called once per frame
@@ -48,11 +57,15 @@ public class GameOver : MonoBehaviour
     {
         status.Restart();
         status.NextRoom();
+
+        PlayerStatus.buttonPressSound.Play();
     }
 
     public void PressQuitButton()
     {
         status.ResetStats();
         SceneManager.LoadScene("MainMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }

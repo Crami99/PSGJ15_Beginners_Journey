@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     List<string> spottedClips;
     List<string> lostClips;
 
+    AudioSource enemyFootsteps;
+    List<string> footstepClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,11 @@ public class Enemy : MonoBehaviour
         audioSrc = gameObject.GetComponent<AudioSource>();
 
         audioSrc.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        enemyFootsteps = GameObject.Find("EnemyFootsteps").GetComponent<AudioSource>();
+        enemyFootsteps.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        footstepClips = new List<string> { "enemy footstep 1", "enemy footstep 2", "enemy footstep 3" };
 
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
@@ -56,6 +64,17 @@ public class Enemy : MonoBehaviour
         {
             if(transform.position != patrolPoints[patrolPointIndex].transform.position){
                 //move towards patrolPoint
+
+                if (!enemyFootsteps.isPlaying)
+                {
+                    string path = "SoundEffects/Enemy/Footsteps/";
+
+                    int i = Random.Range(0, footstepClips.Count);
+
+                    enemyFootsteps.clip = Resources.Load<AudioClip>(path + footstepClips[i]);
+                    enemyFootsteps.Play();
+                }
+
                 transform.position = Vector3.MoveTowards(transform.position, patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
             }else{
                 if(timeToLookAround >= 2f){
@@ -113,6 +132,16 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
         {
+            if (!enemyFootsteps.isPlaying)
+            {
+                string path = "SoundEffects/Enemy/Footsteps/";
+
+                int i = Random.Range(0, footstepClips.Count);
+
+                enemyFootsteps.clip = Resources.Load<AudioClip>(path + footstepClips[i]);
+                enemyFootsteps.Play();
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
                 Time.deltaTime * 10.0f);
         }

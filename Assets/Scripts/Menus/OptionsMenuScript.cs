@@ -76,6 +76,8 @@ public class OptionsMenuScript : MonoBehaviour
 
         PlayerStatus.menuMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
 
+        PlayerStatus.buttonPressSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
         /*
         optionsText.text = "Options";
         optionsText.fontSize = 20;
@@ -127,5 +129,7 @@ public class OptionsMenuScript : MonoBehaviour
         Destroy(GameObject.Find("MainMenuScript"));
         Destroy(GameObject.Find("PlayerStatusScript"));
         SceneManager.LoadScene("MainMenu");
+
+        PlayerStatus.buttonPressSound.Play();
     }
 }
