@@ -26,6 +26,9 @@ public class InventoryUI : MonoBehaviour
 
     PlayerStatus status;
 
+    public static AudioSource inventoryItemSound;
+    public static List<string> inventoryItemClips;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,12 @@ public class InventoryUI : MonoBehaviour
         
         alchemySlots = transform.Find("Canvas/Crafting/Slots").transform;
         inventorySlots = transform.Find("Canvas/InventorySlots").transform;
+
+        inventoryItemSound = GameObject.Find("InventoryItemSounds").GetComponent<AudioSource>();
+        inventoryItemSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        // Get the different clips of inventory item sounds inside the path folder
+        inventoryItemClips = new List<string> { "player inventory item click", "player inventory item placed" };
 
         player = GameObject.Find("Player");
         status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();

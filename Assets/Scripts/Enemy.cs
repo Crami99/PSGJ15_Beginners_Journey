@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour
     AudioSource enemyFootsteps;
     List<string> footstepClips;
 
+    /*AudioSource enemyAttackSounds;
+    List<string> enemyAttackClips;
+
+    private string enemyAttackSoundPath;*/
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +42,15 @@ public class Enemy : MonoBehaviour
         enemyFootsteps.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
 
         footstepClips = new List<string> { "enemy footstep 1", "enemy footstep 2", "enemy footstep 3" };
+
+        // Enemy attack sounds initialized but for now, comment them out until the enemy attack animations/logic are done
+        /*enemyAttackSounds = GameObject.Find("EnemyAttackSounds").GetComponent<AudioSource>();
+        enemyAttackSounds.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
+
+        enemyAttackClips = new List<string> { "enemy attack 1", "enemy attack 2", "enemy attack 3",
+        "enemy attack 4", "enemy attack 5"};
+
+        enemyAttackSoundPath = "SoundEffects/Enemy/Attack Sounds/";*/
 
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
