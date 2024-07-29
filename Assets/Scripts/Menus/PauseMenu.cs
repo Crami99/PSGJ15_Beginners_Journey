@@ -32,7 +32,9 @@ public class PauseMenu : MonoBehaviour
 
     public void PressQuitButton()
     {
-        //SceneManager.LoadScene("MainMenu");
+        Destroy(GameObject.Find("MainMenuScript"));
+        Destroy(GameObject.Find("PlayerStatusScript"));
+        SceneManager.LoadScene("MainMenu");
     }
 
 }

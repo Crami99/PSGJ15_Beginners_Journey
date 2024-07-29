@@ -25,6 +25,8 @@ public class MainMenuScript : MonoBehaviour
         howToPlayText = GameObject.Find("HowToPlayText").GetComponent<Text>();
         optionsText = GameObject.Find("OptionsText").GetComponent<Text>();
         creditsText = GameObject.Find("CreditsText").GetComponent<Text>();
+
+        
     }
 
     private void Update()

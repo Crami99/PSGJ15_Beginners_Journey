@@ -69,6 +69,13 @@ public class OptionsMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Updates the text as the player modifies the sliders
+        musicVolumeSliderText.text = Mathf.RoundToInt(musicVolumeSlider.value * 100).ToString() + "%";
+
+        sfxVolumeSliderText.text = Mathf.RoundToInt(sfxVolumeSlider.value * 100).ToString() + "%";
+
+        PlayerStatus.menuMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+
         /*
         optionsText.text = "Options";
         optionsText.fontSize = 20;

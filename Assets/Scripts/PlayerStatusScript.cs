@@ -21,6 +21,8 @@ public class PlayerStatus : MonoBehaviour
 
     public List<string> roomList;
 
+    public static AudioSource menuMusic;
+
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Status");
@@ -31,11 +33,28 @@ public class PlayerStatus : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        menuMusic = GameObject.Find("MenuMusic").GetComponent<AudioSource>();
+        menuMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+
+        menuMusic.loop = true;
+        menuMusic.Play();
+
+        DontDestroyOnLoad(menuMusic);
     }
     // Start is called before the first frame update
     void Start()
     {
         ResetStats();
+    }
+
+    private void Update()
+    {
+        if (menuMusic.isPlaying == false)
+        {
+            menuMusic.Play();
+            menuMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+        }
     }
 
     public void ResetStats(){

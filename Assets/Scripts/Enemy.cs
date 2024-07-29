@@ -18,9 +18,6 @@ public class Enemy : MonoBehaviour
     List<string> spottedClips;
     List<string> lostClips;
 
-    public AudioSource combatMusic;
-    public AudioSource noCombatMusic;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +29,6 @@ public class Enemy : MonoBehaviour
         audioSrc = gameObject.GetComponent<AudioSource>();
 
         audioSrc.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
-        combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
-        noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
-
-        combatMusic.loop = true;
-        noCombatMusic.loop = true;
-
-        noCombatMusic.Play();
 
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
@@ -91,9 +81,6 @@ public class Enemy : MonoBehaviour
 
             audioSrc.clip = Resources.Load<AudioClip>(path + spottedClips[soundIndex]);
             audioSrc.Play();
-
-            noCombatMusic.Stop();
-            combatMusic.Play();
         }
     }
         
@@ -109,9 +96,6 @@ public class Enemy : MonoBehaviour
 
             audioSrc.clip = Resources.Load<AudioClip>(path + lostClips[soundIndex]);
             audioSrc.Play();
-
-            combatMusic.Stop();
-            noCombatMusic.Play();
         }
     }
 

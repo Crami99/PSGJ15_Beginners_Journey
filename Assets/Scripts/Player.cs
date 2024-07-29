@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Player : MonoBehaviour
 
     private Vector2 moveInput;
 
+    private AudioSource musicSource;
+    private List<string> musicClips;
+
+    private string path;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +43,30 @@ public class Player : MonoBehaviour
 
         pauseMenu = GameObject.Find("Pause Menu UI");
         pauseMenu.SetActive(false);
+
+        path = "Music/";
+
+        musicSource = GameObject.Find("PlayerMusic").GetComponent<AudioSource>();
+
+        musicSource.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+
+        musicClips = new List<string> { "ShadowGameNoCombat", "ShadowGameCombat" };
+
+        musicSource.loop = true;
+
+        musicSource.clip = Resources.Load<AudioClip>(path + musicClips[0]);
+        musicSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStatus.menuMusic.isPlaying)
+        {
+            PlayerStatus.menuMusic.Stop();
+            PlayerStatus.menuMusic.volume = 0;
+        }
+
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
         
@@ -96,7 +121,10 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if(directLight){
+            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[1]);
+            musicSource.Play();
+
+            if (directLight){
                 if(status.shield +status.shieldMod > 0){
                     status.shield = status.shield - lightDamage * Time.deltaTime;
                 }else{
@@ -109,6 +137,9 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy"){
             directLight = false;
+
+            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[0]);
+            musicSource.Play();
         }
     }
 }
