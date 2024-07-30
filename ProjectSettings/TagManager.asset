@@ -8,6 +8,11 @@ TagManager:
   - Lightsource
   - Enemy
   - Obstacle
+  - MainMenu
+  - Item
+  - AlchemySlot
+  - InventorySlot
+  - Status
   layers:
   - Default
   - TransparentFX

@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -111,9 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c448614fb9c7d641b37fff114f49b84
-      internalID: -1068329955
-      vertices: []
+      spriteID: 633c319f9395277478c4288a4ee01826
+      internalID: -157624376      vertices: []
       indices: 
       edges: []
       weights: []
@@ -132,8 +144,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 404f0d1735ea8744282ba6dea096c12a
-      internalID: 278916207
+      spriteID: f01998348740095469be35107f7e75df
+      internalID: -1655460190
       vertices: []
       indices: 
       edges: []
@@ -153,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1def49c808111aa4abf8a1099ed10228
-      internalID: -189687154
+      spriteID: 3400fcf60a3570844ad39c4bb720590f
+      internalID: 78842184
       vertices: []
       indices: 
       edges: []
@@ -174,8 +186,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea549483db1cea7429dc09b9f72558cb
-      internalID: 1277440166
+      spriteID: c99abb5c7d45b2d4ca2613d799ee964f
+      internalID: -1620742994
       vertices: []
       indices: 
       edges: []
@@ -195,8 +207,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13d6f414313a27846953b8ef4818d969
-      internalID: -775456252
+      spriteID: 01dd828cc68e93b41a8819bd087d634d
+      internalID: 2104988233
       vertices: []
       indices: 
       edges: []
@@ -216,8 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffaa49e4b6b0f8c4b977c1397147bb2b
-      internalID: -2090179376
+      spriteID: 97530e620be4535468b7c91817b8ae8e
+      internalID: 882891738
       vertices: []
       indices: 
       edges: []
@@ -237,8 +249,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c4894d5e32742a459ac8489db4e576a
-      internalID: 1900967513
+      spriteID: dcde0adac4f360c4cb56acfa92a82654
+      internalID: -357116144
       vertices: []
       indices: 
       edges: []
@@ -258,8 +270,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fa8334b7290d944b8aefa9257514f96
-      internalID: -356571792
+      spriteID: cac470601423d3642b652869d217962d
+      internalID: -520827070
       vertices: []
       indices: 
       edges: []
@@ -279,8 +291,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3e2bd3f0c5f2fb4aa1eb494fc08e12d
-      internalID: 1665849199
+      spriteID: c3f7a0b48992c554d9aab639b1aa6376
+      internalID: 1884777694
       vertices: []
       indices: 
       edges: []
@@ -296,15 +308,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Torch_0: -1068329955
-      Torch_1: 278916207
-      Torch_2: -189687154
-      Torch_3: 1277440166
-      Torch_4: -775456252
-      Torch_5: -2090179376
-      Torch_6: 1900967513
-      Torch_7: -356571792
-      Torch_8: 1665849199
+      Torch_0: -157624376
+      Torch_1: -1655460190
+      Torch_2: 78842184
+      Torch_3: -1620742994
+      Torch_4: 2104988233
+      Torch_5: 882891738
+      Torch_6: -357116144
+      Torch_7: -520827070
+      Torch_8: 1884777694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -75,6 +75,7 @@
         FlaskOfShadowBlood {8,13} == HealthIncrease;
         IronScale {13,7} ==  CritChance;
         GoldSap {12,9} == Shield;
+        ThornCap {11,9} == BaseDamage;
         
 
 
