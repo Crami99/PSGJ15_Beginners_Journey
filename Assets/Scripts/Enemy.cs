@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         EnemyPatrolling();
     }
@@ -78,7 +78,6 @@ public class Enemy : MonoBehaviour
         {
             if(transform.position != patrolPoints[patrolPointIndex].transform.position){
                 //move towards patrolPoint
-
                 if (!enemyFootsteps.isPlaying)
                 {
                     string path = "SoundEffects/Enemy/Footsteps/";
@@ -89,18 +88,22 @@ public class Enemy : MonoBehaviour
                     enemyFootsteps.Play();
                 }
 
-                transform.position = Vector3.MoveTowards(transform.position, patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 5.0f);
+                //Roatate Enemy to target
+                RotateEnemy((Vector2) patrolPoints[patrolPointIndex].transform.position);
+
+                transform.position = Vector3.MoveTowards(transform.position, patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 2.0f);
             }else{
-                if(timeToLookAround >= 2f){
-                    //wait
-                    timeToLookAround += Time.deltaTime;
-                }else{
-                    timeToLookAround = 0f;
-                    patrolPointIndex ++;
-                    patrolPointIndex = patrolPointIndex % 4;
-                }
+                patrolPointIndex ++;
+                patrolPointIndex = patrolPointIndex % 4;
             }
         }
+    }
+
+    private void RotateEnemy(Vector2 target){
+        Vector2 dir = (target - (Vector2)transform.position).normalized;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float offset = 90f;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
     private void PlayEnemyCaughtPlayerLines()
@@ -155,9 +158,8 @@ public class Enemy : MonoBehaviour
                 enemyFootsteps.clip = Resources.Load<AudioClip>(path + footstepClips[i]);
                 enemyFootsteps.Play();
             }
-
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position,
-                Time.deltaTime * 10.0f);
+            RotateEnemy((Vector2)player.transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 10.0f);
         }
     }
 
