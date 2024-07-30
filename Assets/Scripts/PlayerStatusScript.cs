@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public float health;
     public float healthMod;
 
-    public const float shieldBase = 100f;
+    public float shieldBase = 100f;
     public float shield;
     public float shieldMod;
 

@@ -83,6 +83,11 @@ public class Player : MonoBehaviour
         healthBar.value = status.health + status.healthMod;
         shieldBar.value = status.shield + status.shieldMod;
 
+        //regen shield
+        if(!directLight && status.shield < status.shieldBase){
+            status.shield += 5 * Time.deltaTime;
+        }
+
         // Show the game over screen when the player's health is lower than healthMod
         if(status.health + status.healthMod <= 0){
             SceneManager.LoadScene("GameOver");
