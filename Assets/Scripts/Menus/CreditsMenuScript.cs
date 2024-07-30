@@ -18,6 +18,12 @@ public class CreditsMenuScript : MonoBehaviour
     private Text soundComposerText;
     private Text soundComposerNameText;
 
+    private Text introVideoText;
+    private Text introVideoNameText;
+
+    private Text enemyLinesText;
+    private Text enemyLinesNameText;
+
     private float redColorTimer;
     private float greenColorTimer;
 
@@ -35,6 +41,12 @@ public class CreditsMenuScript : MonoBehaviour
 
         soundComposerText = GameObject.Find("Sound Composer Text").GetComponent<Text>();
         soundComposerNameText = GameObject.Find("Sound Composer Name Text").GetComponent<Text>();
+
+        introVideoText = GameObject.Find("Intro Video Text").GetComponent<Text>();
+        introVideoNameText = GameObject.Find("Intro Video Name Text").GetComponent<Text>();
+
+        enemyLinesText = GameObject.Find("Enemy Lines Text").GetComponent<Text>();
+        enemyLinesNameText = GameObject.Find("Enemy Lines Name Text").GetComponent<Text>();
 
         redColorTimer = 0.0f;
         greenColorTimer = 0.0f;
@@ -96,6 +108,26 @@ public class CreditsMenuScript : MonoBehaviour
         soundComposerNameText.fontSize = 15;
         soundComposerNameText.alignment = TextAnchor.MiddleLeft;
         soundComposerNameText.color = new Color(redColorTimer, greenColorTimer, 0.0f); // Set this to a random color for now
+
+        introVideoText.text = "Intro Video";
+        introVideoText.fontSize = 15;
+        introVideoText.alignment = TextAnchor.MiddleRight;
+        introVideoText.color = new Color(0.0f, greenColorTimer, 0.5f); // Set this to a random color for now
+
+        introVideoNameText.text = "Osama Hussein";
+        introVideoNameText.fontSize = 15;
+        introVideoNameText.alignment = TextAnchor.MiddleLeft;
+        introVideoNameText.color = new Color(0.0f, greenColorTimer, 0.5f); // Set this to a random color for now
+
+        enemyLinesText.text = "Enemy Lines";
+        enemyLinesText.fontSize = 15;
+        enemyLinesText.alignment = TextAnchor.MiddleRight;
+        enemyLinesText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
+
+        enemyLinesNameText.text = "Osama Hussein";
+        enemyLinesNameText.fontSize = 15;
+        enemyLinesNameText.alignment = TextAnchor.MiddleLeft;
+        enemyLinesNameText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
     }
 
     public void PressBackButton()
