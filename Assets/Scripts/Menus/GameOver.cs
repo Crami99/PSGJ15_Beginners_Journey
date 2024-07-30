@@ -21,21 +21,6 @@ public class GameOver : MonoBehaviour
         gameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
         restartText = GameObject.Find("RestartText").GetComponent<Text>();
         quitText = GameObject.Find("QuitText").GetComponent<Text>();
-        
-        gameOverText.text = "You Died!";
-        gameOverText.fontSize = 20;
-        gameOverText.alignment = TextAnchor.MiddleCenter;
-        gameOverText.color = new Color(1.0f, 0.0f, 0.0f); // Set this to a random color for now
-
-        restartText.text = "Restart";
-        restartText.fontSize = 15;
-        restartText.alignment = TextAnchor.MiddleCenter;
-        restartText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        quitText.text = "Quit";
-        quitText.fontSize = 15;
-        quitText.alignment = TextAnchor.MiddleCenter;
-        quitText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
 
         playerDeathSound = GetComponent<AudioSource>();
 

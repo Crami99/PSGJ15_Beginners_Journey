@@ -35,26 +35,6 @@ public class MainMenuScript : MonoBehaviour
         // Make sure the main menu animated video keeps looping after it's done playing
         mainMenuAnimatedVideo.isLooping = true;
         mainMenuAnimatedVideo.Play();
-
-        playText.text = "Play";
-        playText.fontSize = 15;
-        playText.alignment = TextAnchor.MiddleCenter;
-        playText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        howToPlayText.text = "How to Play";
-        howToPlayText.fontSize = 15;
-        howToPlayText.alignment = TextAnchor.MiddleCenter;
-        howToPlayText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        optionsText.text = "Options";
-        optionsText.fontSize = 15;
-        optionsText.alignment = TextAnchor.MiddleCenter;
-        optionsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        creditsText.text = "Credits";
-        creditsText.fontSize = 15;
-        creditsText.alignment = TextAnchor.MiddleCenter;
-        creditsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
     }
 
     private void Update()

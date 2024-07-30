@@ -31,7 +31,6 @@ public class CreditsMenuScript : MonoBehaviour
     void Start()
     {
         creditsText = GameObject.Find("CreditsText").GetComponent<Text>();
-        backText = GameObject.Find("BackText").GetComponent<Text>();
 
         programmersText = GameObject.Find("Programmers Text").GetComponent<Text>();
         programmerNamesText = GameObject.Find("Programmer Names Text").GetComponent<Text>();
@@ -69,73 +68,60 @@ public class CreditsMenuScript : MonoBehaviour
             greenColorTimer = 2.0f;
         }
 
-        creditsText.text = "Credits";
-        creditsText.fontSize = 20;
-        creditsText.alignment = TextAnchor.MiddleCenter;
-        creditsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        backText.text = "Back";
-        backText.fontSize = 15;
-        backText.alignment = TextAnchor.MiddleCenter;
-        backText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
-
-        programmersText.text = "Programmers";
-        programmersText.fontSize = 15;
+        programmersText.text = "Programming";
+        programmersText.fontSize = 20;
         programmersText.alignment = TextAnchor.MiddleRight;
         programmersText.color = new Color(0.0f, greenColorTimer, 0.0f); // Set this to a random color for now
 
         programmerNamesText.text = "Osama Hussein\nCrami";
-        programmerNamesText.fontSize = 15;
+        programmerNamesText.fontSize = 20;
         programmerNamesText.alignment = TextAnchor.MiddleLeft;
         programmerNamesText.color = new Color(0.0f, greenColorTimer, 0.0f); // Set this to a random color for now
 
-        artDesignersText.text = "Art designers";
-        artDesignersText.fontSize = 15;
+        artDesignersText.text = "Art";
+        artDesignersText.fontSize = 20;
         artDesignersText.alignment = TextAnchor.MiddleRight;
         artDesignersText.color = new Color(redColorTimer, 0.0f, 0.0f); // Set this to a random color for now
 
         artDesignerNamesText.text = "Cryptic.\nYadiau";
-        artDesignerNamesText.fontSize = 15;
+        artDesignerNamesText.fontSize = 20;
         artDesignerNamesText.alignment = TextAnchor.MiddleLeft;
         artDesignerNamesText.color = new Color(redColorTimer, 0.0f, 0.0f); // Set this to a random color for now
 
         soundComposerText.text = "Sound composer";
-        soundComposerText.fontSize = 15;
+        soundComposerText.fontSize = 20;
         soundComposerText.alignment = TextAnchor.MiddleRight;
         soundComposerText.color = new Color(redColorTimer, greenColorTimer, 0.0f); // Set this to a random color for now
 
         soundComposerNameText.text = "Darkstrikex";
-        soundComposerNameText.fontSize = 15;
+        soundComposerNameText.fontSize = 20;
         soundComposerNameText.alignment = TextAnchor.MiddleLeft;
         soundComposerNameText.color = new Color(redColorTimer, greenColorTimer, 0.0f); // Set this to a random color for now
 
         introVideoText.text = "Intro Video";
-        introVideoText.fontSize = 15;
+        introVideoText.fontSize = 20;
         introVideoText.alignment = TextAnchor.MiddleRight;
         introVideoText.color = new Color(0.0f, greenColorTimer, 0.5f); // Set this to a random color for now
 
-        introVideoNameText.text = "Osama Hussein";
-        introVideoNameText.fontSize = 15;
+        introVideoNameText.text = "Yadiau";
+        introVideoNameText.fontSize = 20;
         introVideoNameText.alignment = TextAnchor.MiddleLeft;
         introVideoNameText.color = new Color(0.0f, greenColorTimer, 0.5f); // Set this to a random color for now
 
-        enemyLinesText.text = "Enemy Lines";
-        enemyLinesText.fontSize = 15;
+        enemyLinesText.text = "Voice Acting";
+        enemyLinesText.fontSize = 20;
         enemyLinesText.alignment = TextAnchor.MiddleRight;
         enemyLinesText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
 
         enemyLinesNameText.text = "Osama Hussein";
-        enemyLinesNameText.fontSize = 15;
+        enemyLinesNameText.fontSize = 20;
         enemyLinesNameText.alignment = TextAnchor.MiddleLeft;
         enemyLinesNameText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
     }
 
     public void PressBackButton()
-    {
-        Destroy(GameObject.Find("MainMenuScript"));
-        Destroy(GameObject.Find("PlayerStatusScript"));
-        SceneManager.LoadScene("MainMenu");
-
+    {   
         PlayerStatus.buttonPressSound.Play();
+        SceneManager.LoadScene("MainMenu");
     }
 }

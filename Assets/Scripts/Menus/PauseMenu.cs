@@ -11,17 +11,12 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenuTitle = GameObject.Find("Pause Menu Title Text").GetComponent<Text>();
+        //pauseMenuTitle = GameObject.Find("Pause Menu Title Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        pauseMenuTitle.text = "Game Paused!";
-        pauseMenuTitle.fontSize = 25;
-        pauseMenuTitle.alignment = TextAnchor.MiddleCenter;
-        pauseMenuTitle.color = new Color(0.7f, 0.4f, 0.0f);
-
         Time.timeScale = 0.0f;
     }
 
@@ -33,12 +28,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void PressQuitButton()
-    {
-        Destroy(GameObject.Find("MainMenuScript"));
-        Destroy(GameObject.Find("PlayerStatusScript"));
-        SceneManager.LoadScene("MainMenu");
-
+    {   
         PlayerStatus.buttonPressSound.Play();
+        SceneManager.LoadScene("MainMenu");   
     }
-
 }

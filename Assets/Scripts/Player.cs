@@ -93,6 +93,10 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            pauseMenu.SetActive(true);
+        }
+
         //if the player presses the I key open the Inventory
         if(Input.GetKeyDown(KeyCode.I)){
             inventoryHUD.SetActive(true);
