@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5387171329306611092}
   - component: {fileID: 1708464561993009191}
   - component: {fileID: 7371091667409966732}
-  - component: {fileID: 9189530260755280607}
+  - component: {fileID: 55141507667737339}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -310,7 +310,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!60 &9189530260755280607
+--- !u!60 &55141507667737339
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,15 +354,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.14999999, y: 0.11}
-      - {x: -0.16, y: 0.08}
-      - {x: -0.16, y: -0.049999997}
-      - {x: -0.089999996, y: -0.089999996}
-      - {x: 0.08, y: -0.089999996}
-      - {x: 0.11, y: -0.08}
-      - {x: 0.16, y: -0.049999997}
-      - {x: 0.16, y: 0.089999996}
-      - {x: 0.14999999, y: 0.11}
+    - - {x: -0.40625, y: 0.34375}
+      - {x: -0.5, y: 0.3125}
+      - {x: -0.5, y: -0.125}
+      - {x: -0.28125, y: -0.34375}
+      - {x: 0.15625, y: -0.34375}
+      - {x: 0.5, y: -0.25}
+      - {x: 0.5, y: 0.3125}
+      - {x: 0.46875, y: 0.34375}
   m_UseDelaunayMesh: 0
 --- !u!1 &1737733947385255720
 GameObject:

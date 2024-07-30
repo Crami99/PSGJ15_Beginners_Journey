@@ -9,15 +9,11 @@ public class IntroScript : MonoBehaviour
     // Reference to the intro video object
     private VideoPlayer introVideo;
 
-    private float timer;
-
     // Start is called before the first frame update
     void Start()
     {
         // Find the intro video object first
         introVideo = GameObject.Find("Intro").GetComponent<VideoPlayer>();
-
-        timer = 0.0f;
 
         // Find the intro video URL at the StreamingAssets path
         introVideo.url = System.IO.Path.Combine(Application.streamingAssetsPath, "The Beginner's Journey Intro.mp4");
