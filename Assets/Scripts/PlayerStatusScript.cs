@@ -39,7 +39,6 @@ public class PlayerStatus : MonoBehaviour
         menuMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
 
         menuMusic.loop = true;
-        menuMusic.Play();
 
         DontDestroyOnLoad(menuMusic);
 
