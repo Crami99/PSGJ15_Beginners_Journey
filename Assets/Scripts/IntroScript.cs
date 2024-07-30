@@ -29,10 +29,8 @@ public class IntroScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        // If the timer is greater than or equal to 8, transition to the main menu
-        if (timer >= 8.0f)
+        // If the intro video is not playing anymore, transition to the main menu
+        if (!introVideo.isPlaying)
         {
             SceneManager.LoadScene("MainMenu");
         }
