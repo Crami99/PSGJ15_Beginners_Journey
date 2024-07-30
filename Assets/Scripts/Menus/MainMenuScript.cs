@@ -9,7 +9,6 @@ public class MainMenuScript : MonoBehaviour
 {
     PlayerStatus status;
 
-    private Text mainMenuText;
     private Text playText;
     private Text howToPlayText;
     private Text levelSelectorText;
@@ -23,8 +22,6 @@ public class MainMenuScript : MonoBehaviour
     {
         status = GameObject.Find("PlayerStatus").GetComponent<PlayerStatus>();
 
-        mainMenuText = GameObject.Find("MainMenuText").GetComponent<Text>();
-
         playText = GameObject.Find("PlayText").GetComponent<Text>();
         howToPlayText = GameObject.Find("HowToPlayText").GetComponent<Text>();
         optionsText = GameObject.Find("OptionsText").GetComponent<Text>();
@@ -33,19 +30,11 @@ public class MainMenuScript : MonoBehaviour
         mainMenuAnimatedVideo = GameObject.Find("MainMenuAnimatedVideo").GetComponent<VideoPlayer>();
 
         // Find the main menu animated video video URL at the StreamingAssets path
-        mainMenuAnimatedVideo.url = System.IO.Path.Combine(Application.streamingAssetsPath, "startMerged.mp4");
+        mainMenuAnimatedVideo.url = System.IO.Path.Combine(Application.streamingAssetsPath, "start1.mp4");
 
         // Make sure the main menu animated video keeps looping after it's done playing
         mainMenuAnimatedVideo.isLooping = true;
         mainMenuAnimatedVideo.Play();
-    }
-
-    private void Update()
-    {
-        mainMenuText.text = "Main Menu";
-        mainMenuText.fontSize = 20;
-        mainMenuText.alignment = TextAnchor.MiddleCenter;
-        mainMenuText.color = new Color(0.5f, 0.8f, 0.0f); // Set this to a random color for now
 
         playText.text = "Play";
         playText.fontSize = 15;
@@ -68,32 +57,34 @@ public class MainMenuScript : MonoBehaviour
         creditsText.color = new Color(0.0f, 0.0f, 1.0f); // Set this to a random color for now
     }
 
+    private void Update()
+    {
+
+    }
+
     public void PressPlayButton()
     {
-        status.Restart();
-
-        status.NextRoom();
-
         PlayerStatus.buttonPressSound.Play();
+        
+        status.Restart();
+        status.NextRoom();
     }
 
     public void PressHowToPlayButton()
     {
+        PlayerStatus.buttonPressSound.Play();
         SceneManager.LoadScene("HowToPlay");
-
-        PlayerStatus.buttonPressSound.Play();
     }
+    
     public void PressOptionsButton()
-    {
-        SceneManager.LoadScene("OptionsMenu");
-
+    {   
         PlayerStatus.buttonPressSound.Play();
+        SceneManager.LoadScene("OptionsMenu");
     }
 
     public void PressCreditsButton()
-    {
-        SceneManager.LoadScene("CreditsMenu");
-
+    {   
         PlayerStatus.buttonPressSound.Play();
+        SceneManager.LoadScene("CreditsMenu");
     }
 }
