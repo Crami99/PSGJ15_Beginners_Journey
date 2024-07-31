@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     Transform[] patrolPoints;
     private int patrolPointIndex;
+    int pointCount;
 
     private float timeToLookAround;
 
@@ -26,12 +27,6 @@ public class Enemy : MonoBehaviour
 
     private float subtitleDisappearTime;
 
-    /*AudioSource enemyAttackSounds;
-    List<string> enemyAttackClips;
-
-    private string enemyAttackSoundPath;*/
-
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
@@ -48,15 +43,6 @@ public class Enemy : MonoBehaviour
 
         footstepClips = new List<string> { "enemy footstep 1", "enemy footstep 2", "enemy footstep 3" };
 
-        // Enemy attack sounds initialized but for now, comment them out until the enemy attack animations/logic are done
-        /*enemyAttackSounds = GameObject.Find("EnemyAttackSounds").GetComponent<AudioSource>();
-        enemyAttackSounds.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
-
-        enemyAttackClips = new List<string> { "enemy attack 1", "enemy attack 2", "enemy attack 3",
-        "enemy attack 4", "enemy attack 5"};
-
-        enemyAttackSoundPath = "SoundEffects/Enemy/Attack Sounds/";*/
-
         //to add new sounds simply place them in the correct folder and add thier name to the list
         spottedClips = new List<string> { "attack final", "burn in thine holy light", "come here final",
         "i see you final", "raaaaah! final", "raah 2 final"};
@@ -65,7 +51,7 @@ public class Enemy : MonoBehaviour
             "you will die tonight final", "you're not leaving alive"};
 
         //get patrolPoints
-        int pointCount = gameObject.transform.parent.Find("PatrolPoints").childCount;
+        pointCount = gameObject.transform.parent.Find("PatrolPoints").childCount;
 
         patrolPoints = new Transform[pointCount];
 
@@ -124,7 +110,7 @@ public class Enemy : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, patrolPoints[patrolPointIndex].transform.position, Time.deltaTime * 2.0f);
             }else{
                 patrolPointIndex ++;
-                patrolPointIndex = patrolPointIndex % 4;
+                patrolPointIndex = patrolPointIndex % pointCount;
             }
         }
     }
@@ -247,9 +233,28 @@ public class Enemy : MonoBehaviour
             collision.gameObject.tag != "Obstacle" || gameObject.tag == "Enemy" && 
             collision.gameObject.tag == "Player" && collision.gameObject.tag != "Obstacle")
         {
-            PlayEnemyCaughtPlayerLines();
+            //raycast to check line of sight
+            Vector2 dir = transform.position - collision.gameObject.transform.position;
 
-            isEnemyPatrolling = false;
+            RaycastHit2D[] results = new RaycastHit2D[10];
+
+            int hit = collision.Raycast(dir, results, dir.magnitude);
+
+            bool lineOfSight = true;
+
+            for(int i = 0; i < hit; i++){
+                if(results[i].collider.gameObject.tag == "Obstacle"){
+                    lineOfSight = false;
+                }
+            }
+
+            if(lineOfSight){
+                PlayEnemyCaughtPlayerLines();
+
+                isEnemyPatrolling = false;
+            }
+
+            
         }
     }
 
@@ -260,17 +265,31 @@ public class Enemy : MonoBehaviour
             gameObject.tag == "Enemy" && collision.gameObject.tag == "Player" &&
             collision.gameObject.tag != "Obstacle" && isEnemyPatrolling == false)
         {
-            if (!enemyFootsteps.isPlaying)
-            {
-                string path = "SoundEffects/Enemy/Footsteps/";
+            Vector2 dir = transform.position - collision.gameObject.transform.position;
 
-                int i = Random.Range(0, footstepClips.Count);
+            RaycastHit2D[] results = new RaycastHit2D[10];
 
-                enemyFootsteps.clip = Resources.Load<AudioClip>(path + footstepClips[i]);
-                enemyFootsteps.Play();
+            int hit = collision.Raycast(dir, results, dir.magnitude);
+
+            bool lineOfSight = true;
+
+            for(int i = 0; i < hit; i++){
+                if(results[i].collider.gameObject.tag == "Obstacle"){
+                    lineOfSight = false;
+                }
             }
-            RotateEnemy((Vector2)player.transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 10.0f);
+            if(lineOfSight){
+                if (!enemyFootsteps.isPlaying){
+                    string path = "SoundEffects/Enemy/Footsteps/";
+
+                    int i = Random.Range(0, footstepClips.Count);
+
+                    enemyFootsteps.clip = Resources.Load<AudioClip>(path + footstepClips[i]);
+                    enemyFootsteps.Play();
+                }
+                RotateEnemy((Vector2)player.transform.position);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 10.0f);
+            }
         }
     }
 

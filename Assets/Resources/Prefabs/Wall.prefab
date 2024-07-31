@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2998592285619571748}
   - component: {fileID: 5081956602867736631}
   - component: {fileID: 8258378595327406905}
+  - component: {fileID: 3525178579283523949}
   - component: {fileID: 7459848042958910420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -131,6 +132,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &3525178579283523949
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578277745274257621}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!114 &7459848042958910420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +185,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 148562
+  m_InstanceId: 57764
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}

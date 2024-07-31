@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    private Text inventoryTitleText;
-
     //0 = slot open, 1 = slot full, 2 = slot locked
     int[,] craftingGridStatus = {{2, 0, 0, 0, 2},
                                  {0, 0, 0, 0, 0},
@@ -32,8 +30,6 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventoryTitleText = GameObject.Find("Inventory Title Text").GetComponent<Text>();
-        
         alchemySlots = transform.Find("Canvas/Crafting/Slots").transform;
         inventorySlots = transform.Find("Canvas/InventorySlots").transform;
 
@@ -77,11 +73,6 @@ public class InventoryUI : MonoBehaviour
         }
 
         craftingBackground = transform.Find("Canvas/Crafting/Background");
-
-        inventoryTitleText.text = "Inventory";
-        inventoryTitleText.fontSize = 25;
-        inventoryTitleText.alignment = TextAnchor.MiddleCenter;
-        inventoryTitleText.color = new Color(1.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame

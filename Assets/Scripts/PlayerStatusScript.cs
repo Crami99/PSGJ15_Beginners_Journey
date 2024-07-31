@@ -84,8 +84,7 @@ public class PlayerStatus : MonoBehaviour
         //add all rooms to room list
         roomList = new List<string>();
         roomList.Add("Room 0");
-        //roomList.Add("Room 2");
-        //roomList.Add("Room 1");
+        roomList.Add("Room 1");
         
     }
 

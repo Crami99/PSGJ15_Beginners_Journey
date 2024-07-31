@@ -38,8 +38,7 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
         switch(type){
             case 0:
                 //health
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, 255);
-                gameObject.GetComponent<RawImage>().color = new Color(255, 0, 0, 255);
+                gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprites/FlaskofShadowBlood");
 
                 shieldMod = 0f;
                 healthMod = 50f;
@@ -55,8 +54,7 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
 
             case 1:
                 //shield
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 255, 255);
-                gameObject.GetComponent<RawImage>().color = new Color(0, 0, 255, 255);
+                gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprites/CrystalChunk");
 
                 shieldMod = 25f;
                 healthMod = 0f;
@@ -72,8 +70,7 @@ public class ItemScript : MonoBehaviour, IPointerDownHandler, IEndDragHandler, I
 
             case 2:
                 //speed
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0, 255);
-                gameObject.GetComponent<RawImage>().color = new Color(0, 255, 0, 255);
+                gameObject.GetComponent<RawImage>().texture = Resources.Load<Texture>("Sprites/GoldSap");
 
                 shieldMod = 0f;
                 healthMod = 0f;
