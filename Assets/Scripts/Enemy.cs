@@ -243,7 +243,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (gameObject.tag == "Lightsource" && collision.gameObject.tag == "Player" && 
+            collision.gameObject.tag != "Obstacle" || gameObject.tag == "Enemy" && 
+            collision.gameObject.tag == "Player" && collision.gameObject.tag != "Obstacle")
         {
             PlayEnemyCaughtPlayerLines();
 
@@ -253,7 +255,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && isEnemyPatrolling == false)
+        if (gameObject.tag == "Lightsource" && collision.gameObject.tag == "Player" && 
+            collision.gameObject.tag != "Obstacle" && isEnemyPatrolling == false || 
+            gameObject.tag == "Enemy" && collision.gameObject.tag == "Player" &&
+            collision.gameObject.tag != "Obstacle" && isEnemyPatrolling == false)
         {
             if (!enemyFootsteps.isPlaying)
             {
@@ -271,7 +276,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (gameObject.tag == "Lightsource" && collision.gameObject.tag == "Player" && 
+            collision.gameObject.tag != "Obstacle" || gameObject.tag == "Enemy" && 
+            collision.gameObject.tag == "Player" && collision.gameObject.tag != "Obstacle")
         {
             PlayEnemyLostPlayerLines();
             isEnemyPatrolling = true;
