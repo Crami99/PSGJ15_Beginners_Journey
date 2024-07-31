@@ -22,10 +22,8 @@ public class Player : MonoBehaviour
 
     private Vector2 moveInput;
 
-    private AudioSource musicSource;
-    private List<string> musicClips;
-
-    private string path;
+    private AudioSource noCombatMusic;
+    private AudioSource combatMusic;
 
     AudioSource playerHitLightSound;
     List<string> playerHitLightClips;
@@ -47,18 +45,20 @@ public class Player : MonoBehaviour
         pauseMenu = GameObject.Find("Pause Menu UI");
         pauseMenu.SetActive(false);
 
-        path = "Music/";
+        noCombatMusic = GameObject.Find("NoCombatMusic").GetComponent<AudioSource>();
+        combatMusic = GameObject.Find("CombatMusic").GetComponent<AudioSource>();
 
-        musicSource = GameObject.Find("PlayerMusic").GetComponent<AudioSource>();
+        noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+        combatMusic.volume = 0;
 
-        musicSource.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+        noCombatMusic.loop = true;
+        combatMusic.loop = true;
 
-        musicClips = new List<string> { "ShadowGameNoCombat", "ShadowGameCombat" };
+        noCombatMusic.clip = Resources.Load<AudioClip>("Music/ShadowGameNoCombat");
+        combatMusic.clip = Resources.Load<AudioClip>("Music/ShadowGameCombat");
 
-        musicSource.loop = true;
-
-        musicSource.clip = Resources.Load<AudioClip>(path + musicClips[0]);
-        musicSource.Play();
+        combatMusic.Play();
+        noCombatMusic.Play();
 
         playerHitLightSound = GameObject.Find("PlayerCollidedWithLight").GetComponent<AudioSource>();
         playerHitLightSound.volume = PlayerPrefs.GetFloat("SFXSliderValue", 100f);
@@ -117,13 +117,13 @@ public class Player : MonoBehaviour
             status.NextRoom();
         }
 
-        if (other.gameObject.name == "Torch" && !musicSource.isPlaying ||
-            other.gameObject.tag == "Enemy" && !musicSource.isPlaying ||
-            other.gameObject.name == "Torch" && musicSource.isPlaying ||
-            other.gameObject.tag == "Enemy" && musicSource.isPlaying)
+        if (other.gameObject.name == "Torch" && combatMusic.isPlaying ||
+            other.gameObject.tag == "Enemy" && combatMusic.isPlaying ||
+            other.gameObject.name == "Torch" && noCombatMusic.isPlaying ||
+            other.gameObject.tag == "Enemy" && noCombatMusic.isPlaying)
         {
-            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[1]);
-            musicSource.Play();
+            combatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
+            noCombatMusic.volume = 0;
         }
 
         if (other.gameObject.tag == "Lightsource" && !playerHitLightSound.isPlaying)
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
             if (directLight){
                 if(status.shield +status.shieldMod > 0){
-                    status.shield = status.shield - lightDamage * Time.deltaTime;
+                    //status.shield = status.shield - lightDamage * Time.deltaTime;
                 }else{
                     status.health = status.health - lightDamage * Time.deltaTime;
                 }
@@ -173,8 +173,8 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "Lightsource" || other.gameObject.tag == "Enemy"){
             directLight = false;
 
-            musicSource.clip = Resources.Load<AudioClip>(path + musicClips[0]);
-            musicSource.Play();
+            combatMusic.volume = 0;
+            noCombatMusic.volume = PlayerPrefs.GetFloat("MusicSliderValue", 100f);
         }
     }
 }

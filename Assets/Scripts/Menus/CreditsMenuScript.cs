@@ -88,7 +88,7 @@ public class CreditsMenuScript : MonoBehaviour
         artDesignerNamesText.alignment = TextAnchor.MiddleLeft;
         artDesignerNamesText.color = new Color(redColorTimer, 0.0f, 0.0f); // Set this to a random color for now
 
-        soundComposerText.text = "Sound composer";
+        soundComposerText.text = "Music and SFX";
         soundComposerText.fontSize = 20;
         soundComposerText.alignment = TextAnchor.MiddleRight;
         soundComposerText.color = new Color(redColorTimer, greenColorTimer, 0.0f); // Set this to a random color for now
