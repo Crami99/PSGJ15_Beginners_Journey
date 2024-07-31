@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
             if (directLight){
                 if(status.shield +status.shieldMod > 0){
-                    //status.shield = status.shield - lightDamage * Time.deltaTime;
+                    status.shield = status.shield - lightDamage * Time.deltaTime;
                 }else{
                     status.health = status.health - lightDamage * Time.deltaTime;
                 }
