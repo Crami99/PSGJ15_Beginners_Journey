@@ -58,8 +58,11 @@ public class Enemy : MonoBehaviour
         enemyAttackSoundPath = "SoundEffects/Enemy/Attack Sounds/";*/
 
         //to add new sounds simply place them in the correct folder and add thier name to the list
-        spottedClips = new List<string> {"ComeHere", "ComeToDaddy", "Deathwarrant", "DieTonight", "GetReady", "ISeeYou", "TakeYouDown", "There", "YouThought"};
-        lostClips = new List<string> {"Come", "ComeBack", "ComeOut", "DamnIt", "LostHim", "TimeToLook", "Where", "WillFind", "YouThink"};
+        spottedClips = new List<string> { "attack final", "burn in thine holy light", "come here final",
+        "i see you final", "raaaaah! final", "raah 2 final"};
+        
+        lostClips = new List<string> { "cant hide for long", "ComeBack final", "where'd it go", 
+            "you will die tonight final", "you're not leaving alive"};
 
         //get patrolPoints
         int pointCount = gameObject.transform.parent.Find("PatrolPoints").childCount;
@@ -144,65 +147,44 @@ public class Enemy : MonoBehaviour
 
             if (soundIndex == 0)
             {
-                subTitleText.text = "Come here!";
+                subTitleText.text = "Attack!";
 
-                subtitleDisappearTime = 1.8f;
+                subtitleDisappearTime = 1.424f;
             }
 
             else if (soundIndex == 1)
             {
-                subTitleText.text = "Come to daddy!";
+                subTitleText.text = "Burn in thine holy light!";
 
-                subtitleDisappearTime = 1.488f;
+                subtitleDisappearTime = 0.569f;
             }
 
             else if (soundIndex == 2)
             {
-                subTitleText.text = "I'll sign your death warrant at your funeral!";
+                subTitleText.text = "Come here!";
 
-                subtitleDisappearTime = 0.096f;
+                subtitleDisappearTime = 1.651f;
             }
 
             else if (soundIndex == 3)
             {
-                subTitleText.text = "You will die tonight!";
+                subTitleText.text = "I see you!";
 
-                subtitleDisappearTime = 0.84f;
+                subtitleDisappearTime = 1.396f;
             }
 
             else if (soundIndex == 4)
             {
-                subTitleText.text = "Get ready to die!";
+                subTitleText.text = "Raaaaah!!";
 
-                subtitleDisappearTime = 1.296f;
+                subtitleDisappearTime = 1.424f;
             }
 
             else if (soundIndex == 5)
             {
-                subTitleText.text = "I see you!";
+                subTitleText.text = "Raah!";
 
-                subtitleDisappearTime = 1.272f;
-            }
-
-            else if (soundIndex == 6)
-            {
-                subTitleText.text = "Time to take you down!";
-
-                subtitleDisappearTime = 0.72f;
-            }
-
-            else if (soundIndex == 7)
-            {
-                subTitleText.text = "There he is!";
-
-                subtitleDisappearTime = 1.536f;
-            }
-
-            else if (soundIndex == 8)
-            {
-                subTitleText.text = "You thought you were slick? Come here!";
-
-                subtitleDisappearTime = 0.696f;
+                subtitleDisappearTime = 0.899f;
             }
 
             audioSrc.clip = Resources.Load<AudioClip>(path + spottedClips[soundIndex]);
@@ -221,65 +203,37 @@ public class Enemy : MonoBehaviour
 
             if (soundIndex == 0)
             {
-                subTitleText.text = "Come to me like a man!";
+                subTitleText.text = "Can't hide for long!";
 
-                subtitleDisappearTime = 1.008f;
+                subtitleDisappearTime = 0.879f;
             }
 
             else if (soundIndex == 1)
             {
                 subTitleText.text = "Hey come back here!";
 
-                subtitleDisappearTime = 1.176f;
+                subtitleDisappearTime = 1.195f;
             }
 
             else if (soundIndex == 2)
             {
-                subTitleText.text = "Come out wherever you are!";
+                subTitleText.text = "Where'd it go?";
 
-                subtitleDisappearTime = 0.792f;
+                subtitleDisappearTime = 1.828f;
             }
 
             else if (soundIndex == 3)
             {
-                subTitleText.text = "Damn it, where is he?";
+                subTitleText.text = "You will die tonight!";
 
-                subtitleDisappearTime = 1.104f;
+                subtitleDisappearTime = 0.953f;
             }
 
             else if (soundIndex == 4)
             {
-                subTitleText.text = "Agh, I lost him!";
+                subTitleText.text = "You're not leaving alive!";
 
-                subtitleDisappearTime = 1.176f;
-            }
-
-            else if (soundIndex == 5)
-            {
-                subTitleText.text = "Time to look for you!";
-
-                subtitleDisappearTime = 1.344f;
-            }
-
-            else if (soundIndex == 6)
-            {
-                subTitleText.text = "Where did he go?";
-
-                subtitleDisappearTime = 1.584f;
-            }
-
-            else if (soundIndex == 7)
-            {
-                subTitleText.text = "I will find you!";
-
-                subtitleDisappearTime = 1.08f;
-            }
-
-            else if (soundIndex == 8)
-            {
-                subTitleText.text = "You think you can stop me?";
-
-                subtitleDisappearTime = 0.768f;
+                subtitleDisappearTime = 0.879f;
             }
 
             audioSrc.clip = Resources.Load<AudioClip>(path + lostClips[soundIndex]);

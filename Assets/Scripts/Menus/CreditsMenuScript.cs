@@ -113,7 +113,7 @@ public class CreditsMenuScript : MonoBehaviour
         enemyLinesText.alignment = TextAnchor.MiddleRight;
         enemyLinesText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
 
-        enemyLinesNameText.text = "Osama Hussein";
+        enemyLinesNameText.text = "Osama Hussein\nDarkstrikex";
         enemyLinesNameText.fontSize = 20;
         enemyLinesNameText.alignment = TextAnchor.MiddleLeft;
         enemyLinesNameText.color = new Color(redColorTimer, 0.0f, 0.5f); // Set this to a random color for now
