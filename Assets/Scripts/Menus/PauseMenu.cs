@@ -18,13 +18,16 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         Time.timeScale = 0.0f;
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            gameObject.SetActive(false);
+        }
     }
 
     public void PressResumeButton()
-    {
-        gameObject.SetActive(false);
-
+    {   
         PlayerStatus.buttonPressSound.Play();
+        gameObject.SetActive(false);
     }
 
     public void PressQuitButton()
